@@ -10,6 +10,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "contato")
 public class Contato implements AbstractModel {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +26,7 @@ public class Contato implements AbstractModel {
     @Convert(converter = TipoContatoConverter.class)
     private ETipoContato tipoContato;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "cliente_id", referencedColumnName = "id")
     private Cliente cliente;
 
@@ -96,6 +97,4 @@ public class Contato implements AbstractModel {
         }
         return true;
     }
-
-
 }

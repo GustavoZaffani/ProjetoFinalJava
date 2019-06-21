@@ -91,5 +91,4 @@ public class Cliente implements AbstractModel {
     public String toString() {
         return nome;
     }
-
 }

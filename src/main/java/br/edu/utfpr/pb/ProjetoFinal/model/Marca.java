@@ -7,7 +7,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "marca")
 public class Marca implements AbstractModel {
-
     private static final long serialVersionUID = 1L;
 
     @Id

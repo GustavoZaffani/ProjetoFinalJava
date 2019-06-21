@@ -11,11 +11,10 @@ public class MainApp extends Application {
         Marca marca = new Marca();
         marca.setDescricao("Teste");
         new MarcaDao().save(marca);
+        System.exit(0);
     }
 
     public static void main(String[] args) {
         launch(args);
     }
 }
-
-

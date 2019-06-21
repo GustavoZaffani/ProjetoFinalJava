@@ -6,6 +6,7 @@ import java.io.Serializable;
 // TODO necessário realizar as alterações
 @Entity
 public class VendaProduto implements Serializable{
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

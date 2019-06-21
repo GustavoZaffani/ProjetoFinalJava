@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 @EqualsAndHashCode(of = "id")
 @Table(name = "estado")
 public class Estado implements AbstractModel {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

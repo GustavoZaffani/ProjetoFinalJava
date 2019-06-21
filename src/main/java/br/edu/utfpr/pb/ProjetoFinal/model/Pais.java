@@ -8,6 +8,7 @@ import javax.persistence.*;
 @EqualsAndHashCode(of = "id")
 @Table(name = "pais")
 public class Pais implements AbstractModel {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
