@@ -7,9 +7,9 @@ import javax.persistence.Persistence;
 public class EntityManagerUtil {
 
     private static EntityManagerFactory emf;
-    
-    public static EntityManager getEntityManager(){
-        if (emf == null){
+
+    public static EntityManager getEntityManager() {
+        if (emf == null) {
             emf = Persistence.createEntityManagerFactory("ProjetoFinalJava");
         }
         return emf.createEntityManager();

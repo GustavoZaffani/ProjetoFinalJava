@@ -1,13 +1,21 @@
 package br.edu.utfpr.pb.ProjetoFinal;
 
+import br.edu.utfpr.pb.ProjetoFinal.dao.MarcaDao;
+import br.edu.utfpr.pb.ProjetoFinal.model.Marca;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
 
     public void start(Stage primaryStage) throws Exception {
-        System.out.println("Entrou aqui");
-        System.exit(0);
+        Marca marca = new Marca();
+        marca.setDescricao("Teste");
+        new MarcaDao().save(marca);
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }
+
 

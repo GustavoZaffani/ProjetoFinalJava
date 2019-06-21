@@ -28,7 +28,6 @@ public class DatabaseConnection {
             Connection c = sessionFactoryImplementation.
                     getSessionFactoryOptions().getServiceRegistry().
                     getService(ConnectionProvider.class).getConnection();
-
             this.conn = c;
         } catch (SQLException ex) {
             System.out.println("Erro ao estabelecer a conexão com o banco: ");
