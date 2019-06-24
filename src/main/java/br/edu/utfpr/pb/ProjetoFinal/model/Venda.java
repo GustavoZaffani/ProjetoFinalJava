@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "venda")
 public class Venda implements Serializable{
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -37,12 +38,6 @@ public class Venda implements Serializable{
 
 
     public Double getValorTotal(){
-        /*Double total = 0D;
-        for (VendaProduto vendaProduto : vendaProdutos) {
-            total += vendaProduto.getValor() * vendaProduto.getQuantidade();
-        }
-        System.out.println("Total = " + total);
-        */
         return vendaProdutos.stream().mapToDouble(vp -> vp.getValor() *
                 vp.getQuantidade()).sum();
     }

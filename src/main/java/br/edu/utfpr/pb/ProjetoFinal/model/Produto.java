@@ -9,32 +9,32 @@ import java.util.Objects;
 @Entity
 @Table(name = "produto")
 public class Produto implements AbstractModel {
+
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "O campo 'nome' é de preenchimento obrigatório.")
+    @NotEmpty(message = "O campo 'Nome' é de preenchimento obrigatório.")
     @Column(name = "nome", length = 50, nullable = false)
     private String nome;
 
-    @NotEmpty(message = "O campo 'descrição' é de preenchimento obrigatório.")
+    @NotEmpty(message = "O campo 'Descrição' é de preenchimento obrigatório.")
     @Column(name = "descricao", length = 500, nullable = false)
     private String descricao;
 
-    @DecimalMin(value = "0.01",
-            message = "O valor deve ser maior que R$ 0.00.")
-    @Column(name = "valor")
+    @DecimalMin(value = "0.01", message = "O valor deve ser maior que R$ 0.00.")
+    @Column(name = "valor", nullable = false)
     private Double valor;
 
-    @ManyToOne()
+    @NotNull(message = "O campo 'Marca' deve ser selecionado.")
+    @ManyToOne
     @JoinColumn(name = "marca_id", referencedColumnName = "id")
-    @NotNull(message = "O campo 'marca' deve ser selecionado.")
     private Marca marca;
 
-    @NotNull(message = "O campo 'categoria' deve ser selecionado.")
-    @ManyToOne()
+    @NotNull(message = "O campo 'Categoria' deve ser selecionado.")
+    @ManyToOne
     @JoinColumn(name = "categoria_id", referencedColumnName = "id")
     private Categoria categoria;
 

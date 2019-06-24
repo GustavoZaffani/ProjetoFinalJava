@@ -6,6 +6,7 @@ import java.io.Serializable;
 // TODO necessário realizar as alterações
 @Entity
 public class VendaProduto implements Serializable{
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -19,7 +20,7 @@ public class VendaProduto implements Serializable{
     private Double valor;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "produto_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "produto_id", referencedColumnName = "id", nullable = false)
     private Produto produto;
 
     @ManyToOne

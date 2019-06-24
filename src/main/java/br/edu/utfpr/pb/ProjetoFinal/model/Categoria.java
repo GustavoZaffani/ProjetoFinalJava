@@ -7,6 +7,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "categoria")
 public class Categoria implements AbstractModel {
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -14,7 +15,7 @@ public class Categoria implements AbstractModel {
     @Column(name = "id")
     private Long id;
 
-    @NotEmpty(message = "O campo 'descrição' é de preenchimento obrigatório!")
+    @NotEmpty(message = "O campo 'Descrição' é de preenchimento obrigatório!")
     @Column(name = "descricao", length = 50, nullable = false)
     private String descricao;
 
@@ -71,5 +72,4 @@ public class Categoria implements AbstractModel {
     public String toString() {
         return descricao;
     }
-
 }

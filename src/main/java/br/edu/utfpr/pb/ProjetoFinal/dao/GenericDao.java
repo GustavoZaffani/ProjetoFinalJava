@@ -47,24 +47,8 @@ public abstract class GenericDao<T extends AbstractModel, I extends Serializable
         t.commit();
     }
 
-    public void insert(T entity) {
-        EntityTransaction t = em.getTransaction();
-        t.begin();
-        em.persist(entity);
-        em.flush();
-        t.commit();
-    }
-
-    public void update(T entity) {
-        EntityTransaction t = em.getTransaction();
-        t.begin();
-        em.merge(entity);
-        em.flush();
-        t.commit();
-    }
-
     public void delete(I id) throws Exception {
-        T entity = getOne(id);
+        T entity = findById(id);
         EntityTransaction t = em.getTransaction();
         t.begin();
         try {
@@ -78,11 +62,11 @@ public abstract class GenericDao<T extends AbstractModel, I extends Serializable
         }
     }
 
-    public T getOne(I id) {
+    public T findById(I id) {
         return em.find(persistedClass, id);
     }
 
-    public List<T> getAll() {
+    public List<T> findAll() {
         em.clear();
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<T> query = builder.createQuery(persistedClass);

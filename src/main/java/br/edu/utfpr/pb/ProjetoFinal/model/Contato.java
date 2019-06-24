@@ -10,6 +10,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "contato")
 public class Contato implements AbstractModel {
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -22,7 +23,6 @@ public class Contato implements AbstractModel {
     @Enumerated(EnumType.STRING)
     private EOperadora operadora;
 
-    //@Enumerated(EnumType.ORDINAL)
     @Convert(converter = TipoContatoConverter.class)
     private ETipoContato tipoContato;
 

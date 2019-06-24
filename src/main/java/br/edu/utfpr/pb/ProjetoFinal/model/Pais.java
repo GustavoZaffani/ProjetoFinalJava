@@ -1,13 +1,18 @@
 package br.edu.utfpr.pb.ProjetoFinal.model;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@Data
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Table(name = "pais")
 public class Pais implements AbstractModel {
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -20,19 +25,4 @@ public class Pais implements AbstractModel {
 
     @Column(name = "sigla", length = 3, nullable = false)
     private String sigla;
-
-    public Pais() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getSigla() {
-        return sigla;
-    }
 }

@@ -4,12 +4,10 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Convert;
 
 @Convert
-public class BooleanConverter
-        implements AttributeConverter<Boolean, String> {
+public class BooleanConverter implements AttributeConverter<Boolean, String> {
 
     @Override
     public String convertToDatabaseColumn(Boolean value) {
-
         if (Boolean.TRUE.equals(value)) {
             return "T";
         } else {
@@ -19,7 +17,6 @@ public class BooleanConverter
 
     @Override
     public Boolean convertToEntityAttribute(String value) {
-
         return "T".equals(value);
     }
 

@@ -1,13 +1,16 @@
 package br.edu.utfpr.pb.ProjetoFinal.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "cliente")
 public class Cliente implements AbstractModel {
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -15,21 +18,27 @@ public class Cliente implements AbstractModel {
     @Column(name = "id")
     private Long id;
 
-    @NotEmpty(message = "O campo 'none' é de preenchimento obrigatório.")
+    @NotEmpty(message = "O campo 'Nome' é de preenchimento obrigatório.")
     @Column(name = "nome", length = 50, nullable = false)
     private String nome;
 
-    @NotEmpty(message = "O campo 'cpf' é de preenchimento obrigatório.")
+    @NotEmpty(message = "O campo 'CPF' é de preenchimento obrigatório.")
     @Column(name = "cpf", length = 11, nullable = false)
     private String cpf;
 
+    @NotNull(message = "O campo 'Estado' deve ser selecionado.")
     @ManyToOne
     @JoinColumn(name = "estado_id", referencedColumnName = "id")
     private Estado estado;
 
+    @NotNull(message = "O campo 'Cidade' deve ser selecionado.")
     @ManyToOne
     @JoinColumn(name = "cidade_id", referencedColumnName = "id")
     private Cidade cidade;
+
+    @NotBlank(message = "O campo 'Número' é de preenchimento obrigatório'")
+    @Column(name = "nro", nullable = false)
+    private Integer nro;
 
     @OneToMany(mappedBy = "cliente", orphanRemoval = true,
             cascade = CascadeType.ALL)
@@ -62,6 +71,30 @@ public class Cliente implements AbstractModel {
         this.cpf = cpf;
     }
 
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
+
+    public Integer getNro() {
+        return nro;
+    }
+
+    public void setNro(Integer nro) {
+        this.nro = nro;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -85,10 +118,5 @@ public class Cliente implements AbstractModel {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return nome;
     }
 }

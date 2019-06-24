@@ -9,12 +9,8 @@ public class MainApp extends Application {
 
     public void start(Stage primaryStage) throws Exception {
         Marca marca = new Marca();
-        marca.setDescricao("Teste");
+        marca.setDescricao("Teste insert");
         new MarcaDao().save(marca);
         System.exit(0);
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

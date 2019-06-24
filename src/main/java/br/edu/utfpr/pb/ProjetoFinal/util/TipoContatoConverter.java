@@ -6,12 +6,11 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 @Converter(autoApply = true)
-public class TipoContatoConverter implements
-        AttributeConverter<ETipoContato, Integer> {
+public class TipoContatoConverter implements AttributeConverter<ETipoContato, Integer> {
 
     @Override
-    public Integer convertToDatabaseColumn(ETipoContato attribute) {
-        return attribute.getId();
+    public Integer convertToDatabaseColumn(ETipoContato tipoContato) {
+        return tipoContato.getId();
     }
 
     @Override

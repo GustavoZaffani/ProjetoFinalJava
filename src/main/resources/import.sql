@@ -1,7 +1,21 @@
--- -- INSERT PAIS
--- INSERT INTO pais (id, nome, sigla) VALUES (1, 'Brasil', 'BR');
+-- --INSERT CATEGORIA
+-- INSERT INTO categoria (descricao) VALUES ('Categoria 1');
+-- INSERT INTO categoria (descricao) VALUES ('Categoria 2');
+-- INSERT INTO categoria (descricao) VALUES ('Categoria 3');
+-- INSERT INTO categoria (descricao) VALUES ('Categoria 4');
+-- INSERT INTO categoria (descricao) VALUES ('Categoria 5');
 --
--- -- INSERT ESTADO
+-- --INSERT MARCA
+-- INSERT INTO MARCA (descricao) VALUES ('Marca 1');
+-- INSERT INTO MARCA (descricao) VALUES ('Marca 2');
+-- INSERT INTO MARCA (descricao) VALUES ('Marca 3');
+-- INSERT INTO MARCA (descricao) VALUES ('Marca 4');
+-- INSERT INTO MARCA (descricao) VALUES ('Marca 5');
+
+-- --INSERT PAIS
+-- INSERT INTO pais (id, nome, sigla) VALUES (1, 'Brasil', 'BR');
+
+-- --INSERT ESTADO
 -- INSERT INTO estado (id, nome, uf, pais_id) VALUES (1, 'Acre', 'AC', 1);
 -- INSERT INTO estado (id, nome, uf, pais_id) VALUES (2, 'Alagoas', 'AL', 1);
 -- INSERT INTO estado (id, nome, uf, pais_id) VALUES (3, 'Amazonas', 'AM', 1);
@@ -29,8 +43,8 @@
 -- INSERT INTO estado (id, nome, uf, pais_id) VALUES (25, 'Sergipe', 'SE', 1);
 -- INSERT INTO estado (id, nome, uf, pais_id) VALUES (26, 'São Paulo', 'SP', 1);
 -- INSERT INTO estado (id, nome, uf, pais_id) VALUES (27, 'Tocantins', 'TO', 1);
---
--- -- INSERT CIDADE
+
+-- --INSERT CIDADE
 -- INSERT INTO cidade (id, nome, estado_id) VALUES (1, 'Afonso Cláudio', 8);
 -- INSERT INTO cidade (id, nome, estado_id) VALUES (2, 'Água Doce do Norte', 8);
 -- INSERT INTO cidade (id, nome, estado_id) VALUES (3, 'Águia Branca', 8);
