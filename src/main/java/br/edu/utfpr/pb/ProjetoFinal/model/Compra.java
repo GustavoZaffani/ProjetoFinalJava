@@ -6,15 +6,16 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "marca")
-public class Marca implements AbstractModel {
+@Table(name = "compra")
+public class Compra implements AbstractModel {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,12 +24,13 @@ public class Marca implements AbstractModel {
     @Column(name = "id")
     private Long id;
 
-    @NotEmpty(message = "O campo 'Descrição' é de preenchimento obrigatório")
-    @Column(name = "descricao", length = 50, nullable = false)
-    private String descricao;
+    @Column(name = "data_compra", nullable = false)
+    private LocalDate dataCompra;
 
-    @Override
-    public String toString() {
-        return this.descricao;
-    }
+    @OneToOne
+    private ContaPagar contaPagar;
+
+    @OneToMany(mappedBy = "compra",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<CompraProduto> compraProdutos;
 }

@@ -1,16 +1,23 @@
 package br.edu.utfpr.pb.ProjetoFinal.model;
 
 import br.edu.utfpr.pb.ProjetoFinal.util.BooleanConverter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
 
 // TODO necessário realizar as alterações
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 @Table(name = "usuario")
 @NamedQueries({
         @NamedQuery(name = "Usuario.findByEmailAndSenha",
@@ -26,7 +33,6 @@ public class Usuario implements AbstractModel, Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String teste;
     @NotEmpty(message = "O campo 'Nome' é obrigatório!")
     @Column(name = "nome", length = 100, nullable = false)
     private String nome;
@@ -39,109 +45,23 @@ public class Usuario implements AbstractModel, Serializable {
     private String email;
 
     @NotEmpty(message = "O campo 'Senha' é de preenchimento obrigatório.")
-    @Column(name = "senha", length = 512, nullable = false)
-    private String senha;
+    @Lob
+    @Column(name = "senha", nullable = false)
+    private byte[] senha;
 
     @Convert(converter = BooleanConverter.class)
     @Column(name = "isAtivo", columnDefinition = "char(1) default 'T'")
     private Boolean isAtivo;
 
+    @Convert(converter = BooleanConverter.class)
+    @Column(name = "isAdm", columnDefinition = "char(1) default 'F'")
+    private Boolean isAdministrador;
+
     @NotNull(message = "O campo 'Data de Nascimento' é obrigatório!")
-    @Column(name = "data-nascimento", nullable = false)
+    @Column(name = "data_nascimento", nullable = false)
     private LocalDate dataNascimento;
 
     @Lob
-    @Column()
+    @Column(name = "foto")
     private byte[] foto;
-
-    public byte[] getFoto() {
-        return foto;
-    }
-
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public Boolean getAtivo() {
-        return isAtivo;
-    }
-
-    public void setAtivo(Boolean ativo) {
-        this.isAtivo = ativo;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.id);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Usuario other = (Usuario) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
-    }
-
-
 }
