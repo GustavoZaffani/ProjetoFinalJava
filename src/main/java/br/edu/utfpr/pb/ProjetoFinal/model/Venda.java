@@ -54,6 +54,66 @@ public class Venda implements Serializable {
                 vp.getQuantidade()).sum();
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNumeroDocumento() {
+        return numeroDocumento;
+    }
+
+    public void setNumeroDocumento(String numeroDocumento) {
+        this.numeroDocumento = numeroDocumento;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public LocalDate getDataEntrega() {
+        return dataEntrega;
+    }
+
+    public void setDataEntrega(LocalDate dataEntrega) {
+        this.dataEntrega = dataEntrega;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public List<VendaProduto> getVendaProdutos() {
+        return vendaProdutos;
+    }
+
+    public void setVendaProdutos(List<VendaProduto> vendaProdutos) {
+        this.vendaProdutos = vendaProdutos;
+    }
+
+    public List<ContaReceber> getContasAReceber() {
+        return contasAReceber;
+    }
+
+    public void setContasAReceber(List<ContaReceber> contasAReceber) {
+        this.contasAReceber = contasAReceber;
+    }
+
+    public void setValorTotal(Double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
     @Override
     public String toString() {
         return "Venda{" + "id=" + id + ", numeroDocumento=" + numeroDocumento + ", data=" + data + ", dataEntrega=" + dataEntrega + '}';

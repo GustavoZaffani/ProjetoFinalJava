@@ -50,4 +50,68 @@ public class ContaReceber implements AbstractModel {
     @ManyToOne
     @JoinColumn(name = "venda_id", referencedColumnName = "id")
     private Venda venda;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getDetalhesConta() {
+        return detalhesConta;
+    }
+
+    public void setDetalhesConta(String detalhesConta) {
+        this.detalhesConta = detalhesConta;
+    }
+
+    public LocalDate getDataVencimento() {
+        return dataVencimento;
+    }
+
+    public void setDataVencimento(LocalDate dataVencimento) {
+        this.dataVencimento = dataVencimento;
+    }
+
+    public LocalDate getDataConta() {
+        return dataConta;
+    }
+
+    public void setDataConta(LocalDate dataConta) {
+        this.dataConta = dataConta;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
+    public ETipoPagamento getTipoPagamento() {
+        return tipoPagamento;
+    }
+
+    public void setTipoPagamento(ETipoPagamento tipoPagamento) {
+        this.tipoPagamento = tipoPagamento;
+    }
+
+    public BigDecimal getValorConta() {
+        return valorConta;
+    }
+
+    public void setValorConta(BigDecimal valorConta) {
+        this.valorConta = valorConta;
+    }
+
+    public Venda getVenda() {
+        return venda;
+    }
+
+    public void setVenda(Venda venda) {
+        this.venda = venda;
+    }
 }

@@ -20,14 +20,14 @@ import java.time.LocalDate;
 @EqualsAndHashCode(of = "id")
 @Table(name = "usuario")
 @NamedQueries({
-        @NamedQuery(name = "Usuario.findByEmailAndSenha",
+        @NamedQuery(name = "Usuario.findByEmail",
                 query = "Select u from Usuario u "
-                        + " where u.email=:email AND u.senha=:senha")
+                        + " where u.email=:email")
 })
 public class Usuario implements AbstractModel, Serializable {
 
     private static final long serialVersionUID = 1L;
-    public static final String FIND_BY_EMAIL_AND_SENHA = "Usuario.findByEmailAndSenha";
+    public static final String FIND_BY_EMAIL = "Usuario.findByEmail";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -64,4 +64,76 @@ public class Usuario implements AbstractModel, Serializable {
     @Lob
     @Column(name = "foto")
     private byte[] foto;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public byte[] getSenha() {
+        return senha;
+    }
+
+    public void setSenha(byte[] senha) {
+        this.senha = senha;
+    }
+
+    public Boolean getAtivo() {
+        return isAtivo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        isAtivo = ativo;
+    }
+
+    public Boolean getAdministrador() {
+        return isAdministrador;
+    }
+
+    public void setAdministrador(Boolean administrador) {
+        isAdministrador = administrador;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
 }

@@ -1,16 +1,16 @@
--- --INSERT CATEGORIA
--- INSERT INTO categoria (descricao) VALUES ('Categoria 1');
--- INSERT INTO categoria (descricao) VALUES ('Categoria 2');
--- INSERT INTO categoria (descricao) VALUES ('Categoria 3');
--- INSERT INTO categoria (descricao) VALUES ('Categoria 4');
--- INSERT INTO categoria (descricao) VALUES ('Categoria 5');
+--INSERT CATEGORIA
+INSERT INTO categoria (descricao) VALUES ('Categoria 1');
+INSERT INTO categoria (descricao) VALUES ('Categoria 2');
+INSERT INTO categoria (descricao) VALUES ('Categoria 3');
+INSERT INTO categoria (descricao) VALUES ('Categoria 4');
+INSERT INTO categoria (descricao) VALUES ('Categoria 5');
 --
 -- --INSERT MARCA
--- INSERT INTO MARCA (descricao) VALUES ('Marca 1');
--- INSERT INTO MARCA (descricao) VALUES ('Marca 2');
--- INSERT INTO MARCA (descricao) VALUES ('Marca 3');
--- INSERT INTO MARCA (descricao) VALUES ('Marca 4');
--- INSERT INTO MARCA (descricao) VALUES ('Marca 5');
+INSERT INTO MARCA (descricao) VALUES ('Marca 1');
+INSERT INTO MARCA (descricao) VALUES ('Marca 2');
+INSERT INTO MARCA (descricao) VALUES ('Marca 3');
+INSERT INTO MARCA (descricao) VALUES ('Marca 4');
+INSERT INTO MARCA (descricao) VALUES ('Marca 5');
 
 -- --INSERT PAIS
 -- INSERT INTO pais (id, nome, sigla) VALUES (1, 'Brasil', 'BR');

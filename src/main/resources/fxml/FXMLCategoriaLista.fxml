@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="br.edu.utfpr.pb.ProjetoFinal.controller.FXMLCategoriaListaController">
+    <children>
+        <HBox alignment="CENTER_LEFT" prefHeight="68.0" prefWidth="370.0" VBox.vgrow="NEVER">
+            <children>
+                <Button mnemonicParsing="false" onAction="#newRecord" text="Novo">
+                    <HBox.margin>
+                        <Insets left="20.0" right="10.0"/>
+                    </HBox.margin>
+                </Button>
+                <Button fx:id="buttonEdit" mnemonicParsing="false" onAction="#edit" text="Editar">
+                    <HBox.margin>
+                        <Insets right="10.0"/>
+                    </HBox.margin>
+                </Button>
+                <Button mnemonicParsing="false" text="Remover"/>
+            </children>
+        </HBox>
+        <TableView fx:id="tableData" prefHeight="345.0" prefWidth="370.0" tableMenuButtonVisible="true"
+                   VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="columnId" maxWidth="150.0" minWidth="100.0" prefWidth="150.0" text="Código"/>
+                <TableColumn fx:id="columnDescricao" maxWidth="-1.0" minWidth="300.0" prefWidth="-1.0"
+                             text="Descricão"/>
+            </columns>
+        </TableView>
+    </children>
+</VBox>

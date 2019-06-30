@@ -49,4 +49,60 @@ public class ContaPagar implements AbstractModel {
     @DecimalMin(value = "0.01", message = "O valor deve ser maior que R$ 0.00.")
     @Column(name = "valor_conta", nullable = false)
     private BigDecimal valorConta;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getDetalhesConta() {
+        return detalhesConta;
+    }
+
+    public void setDetalhesConta(String detalhesConta) {
+        this.detalhesConta = detalhesConta;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
+    public LocalDate getDataConta() {
+        return dataConta;
+    }
+
+    public void setDataConta(LocalDate dataConta) {
+        this.dataConta = dataConta;
+    }
+
+    public LocalDate getDataVencimento() {
+        return dataVencimento;
+    }
+
+    public void setDataVencimento(LocalDate dataVencimento) {
+        this.dataVencimento = dataVencimento;
+    }
+
+    public ETipoPagamento getTipoPagamento() {
+        return tipoPagamento;
+    }
+
+    public void setTipoPagamento(ETipoPagamento tipoPagamento) {
+        this.tipoPagamento = tipoPagamento;
+    }
+
+    public BigDecimal getValorConta() {
+        return valorConta;
+    }
+
+    public void setValorConta(BigDecimal valorConta) {
+        this.valorConta = valorConta;
+    }
 }
