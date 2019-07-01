@@ -104,7 +104,7 @@ public class MainSplash extends Application{
                             .getResource("/fxml/FXMLLogin.fxml")
             );
             Scene scene = new Scene(root);
-            scene.getStylesheets().add("/styles/booststrap.css");
+            scene.getStylesheets().add("/styles/bootstrap.css");
             Stage stage = new Stage();
             stage.centerOnScreen();
             stage.setTitle("Aula de JavaFX - OO24S");

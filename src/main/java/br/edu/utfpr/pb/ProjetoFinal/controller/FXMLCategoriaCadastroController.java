@@ -4,6 +4,7 @@ import br.edu.utfpr.pb.ProjetoFinal.dao.CategoriaDao;
 import br.edu.utfpr.pb.ProjetoFinal.model.Categoria;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -40,10 +41,19 @@ public class FXMLCategoriaCadastroController implements Initializable {
 
     @FXML
     private void save() {
-        categoria.setDescricao(
-                textDescricao.getText());
-        this.categoriaDao.save(categoria);
-        this.stage.close();
+        categoria.setDescricao(textDescricao.getText());
+
+        if (this.categoriaDao.isValid(categoria)) {
+            this.categoriaDao.save(categoria);
+            this.stage.close();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Erro ao salvar registro");
+            alert.setContentText(this.categoriaDao.getErrors(categoria));
+            alert.showAndWait();
+        }
+
     }
 
     public void setCategoria(Categoria categoria) {

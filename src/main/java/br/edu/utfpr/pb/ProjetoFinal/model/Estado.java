@@ -61,4 +61,8 @@ public class Estado implements AbstractModel {
     public void setPais(Pais pais) {
         this.pais = pais;
     }
+
+    public String toString() {
+        return this.nome;
+    }
 }

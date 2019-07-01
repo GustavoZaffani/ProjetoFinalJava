@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" maxHeight="557.0" maxWidth="634.0" minHeight="212.0" minWidth="275.0" prefHeight="463.0" prefWidth="634.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.utfpr.pb.ProjetoFinal.controller.FXMLClienteCadastroController">
+    <stylesheets>
+        <URL value="@/styles/bootstrap.css" />
+        <URL value="@/styles/style.css" />
+    </stylesheets>
+    <children>
+        <Label layoutX="30.0" layoutY="25.0" text="Código" />
+        <Label layoutX="30.0" layoutY="81.0" text="Nome" />
+        <TextField fx:id="textId" editable="false" layoutX="30.0" layoutY="42.0" prefHeight="25.0" prefWidth="286.0" />
+        <TextField fx:id="textNome" layoutX="30.0" layoutY="101.0" prefHeight="25.0" prefWidth="286.0" />
+        <Button layoutX="520.0" layoutY="425.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="100.0" text="Salvar" />
+        <Button layoutX="401.0" layoutY="425.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="100.0" text="Cancelar" />
+      <Label layoutX="30.0" layoutY="138.0" text="CPF" />
+      <TextField fx:id="textCpf" layoutX="30.0" layoutY="155.0" prefHeight="25.0" prefWidth="286.0" />
+      <Label layoutX="30.0" layoutY="189.0" text="Data de Nascimento" />
+      <DatePicker fx:id="datePickerNascimento" layoutX="30.0" layoutY="206.0" prefHeight="25.0" prefWidth="286.0" />
+      <Label layoutX="30.0" layoutY="245.0" text="Estado" />
+      <ComboBox fx:id="comboEstado" layoutX="30.0" layoutY="262.0" prefHeight="25.0" prefWidth="286.0" />
+      <Label layoutX="30.0" layoutY="305.0" text="Cidade" />
+      <ComboBox fx:id="comboCidade" layoutX="30.0" layoutY="326.0" prefHeight="25.0" prefWidth="286.0" />
+      <Label layoutX="30.0" layoutY="361.0" text="Número" />
+      <TextField fx:id="textNumero" layoutX="30.0" layoutY="378.0" prefHeight="25.0" prefWidth="286.0" />
+      <Label layoutX="350.0" layoutY="25.0" text="Foto" />
+      <ImageView fx:id="imageFoto" fitHeight="255.0" fitWidth="244.0" layoutX="350.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/user.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="buttonFoto" layoutX="388.0" layoutY="326.0" mnemonicParsing="false" onAction="#loadImage" prefHeight="25.0" prefWidth="169.0" text="Carregar Foto" />
+      <Button fx:id="buttonRemoveFoto" layoutX="388.0" layoutY="366.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="169.0" text="Remover Foto" />
+    </children>
+</AnchorPane>

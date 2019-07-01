@@ -50,4 +50,8 @@ public class Cidade implements AbstractModel {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
+
+    public String toString() {
+        return this.nome;
+    }
 }

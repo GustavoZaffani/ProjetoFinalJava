@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -34,6 +35,10 @@ public class Cliente implements AbstractModel {
     @Column(name = "cpf", length = 11, nullable = false)
     private String cpf;
 
+    @NotNull(message = "O campo 'Data de Nascimento' é de preenchimento obrigatório.")
+    @Column(name = "data_nascimento", nullable = false)
+    private LocalDate dataNascimento;
+
     @NotNull(message = "O campo 'Estado' deve ser selecionado.")
     @ManyToOne
     @JoinColumn(name = "estado_id", referencedColumnName = "id")
@@ -51,6 +56,10 @@ public class Cliente implements AbstractModel {
     @OneToMany(mappedBy = "cliente", orphanRemoval = true,
             cascade = CascadeType.ALL)
     private List<Contato> contatos;
+
+    @Lob
+    @Column(name = "foto")
+    private byte[] foto;
 
     public Long getId() {
         return id;
@@ -106,5 +115,21 @@ public class Cliente implements AbstractModel {
 
     public void setContatos(List<Contato> contatos) {
         this.contatos = contatos;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
     }
 }

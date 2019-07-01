@@ -4,6 +4,7 @@ import br.edu.utfpr.pb.ProjetoFinal.dao.MarcaDao;
 import br.edu.utfpr.pb.ProjetoFinal.model.Marca;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -38,8 +39,17 @@ public class FXMLMarcaCadastroController implements Initializable {
     @FXML
     private void save() {
         marca.setDescricao(textDescricao.getText());
-        this.marcaDao.save(marca);
-        this.stage.close();
+        if (this.marcaDao.isValid(marca)) {
+            this.marcaDao.save(marca);
+            this.stage.close();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Erro ao salvar registro");
+            alert.setContentText(this.marcaDao.getErrors(marca));
+            alert.showAndWait();
+        }
     }
 
     public void setMarca(Marca marca) {
