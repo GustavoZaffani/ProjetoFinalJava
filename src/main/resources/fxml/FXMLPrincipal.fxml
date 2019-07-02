@@ -20,14 +20,19 @@
                         <Menu mnemonicParsing="false" text="Cadastros">
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#loadCategoria" text="Categoria" />
+                        <MenuItem mnemonicParsing="false" onAction="#loadProduto" text="Produto" />
+                        <MenuItem mnemonicParsing="false" onAction="#loadUsuario" text="Usuário" />
+                        <MenuItem mnemonicParsing="false" onAction="#loadMarca" text="Marca" />
+                        <MenuItem mnemonicParsing="false" onAction="#loadCliente" text="Cliente" />
                             </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Financeiro">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#loadContaReceber" text="Contas a Receber" />
+                        <MenuItem mnemonicParsing="false" onAction="#loadContaPagar" text="Contas a Pagar" />
+                     </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Relatórios">
-                            <items>
-                                <!--                            <MenuItem mnemonicParsing="false" onAction="#showReportProduto" text="Produto" />-->
-                            </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Gráficos">
                             <items>
                                 <MenuItem mnemonicParsing="false" text="About" />
                             </items>
@@ -55,12 +60,16 @@
                                         </AnchorPane>
                                     </content>
                                 </TitledPane>
-                                <TitledPane animated="false" prefHeight="206.0" prefWidth="179.0" text="Relatórios">
+                                <TitledPane animated="false" prefHeight="206.0" prefWidth="179.0" text="Financeiro">
                                     <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Button layoutX="35.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadContaReceber" text="Contas a Receber" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <Button layoutX="45.0" layoutY="24.0" mnemonicParsing="false" onAction="#loadContaPagar" text="Contas a Pagar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0" />
+                                 </children></AnchorPane>
                                     </content>
                                 </TitledPane>
-                                <TitledPane animated="false" text="Gráficos">
+                                <TitledPane animated="false" text="Relatórios">
                                     <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                                     </content>

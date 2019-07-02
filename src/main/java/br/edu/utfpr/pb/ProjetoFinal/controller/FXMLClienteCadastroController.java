@@ -16,7 +16,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.net.URL;
@@ -60,13 +59,17 @@ public class FXMLClienteCadastroController implements Initializable {
         this.cidadeDao = new CidadeDao();
         ObservableList<Estado> estados =
                 FXCollections.observableArrayList(
-                    this.estadoDao.findAll()
+                        this.estadoDao.findAll()
                 );
+        this.comboEstado.setItems(estados);
 
-        this.comboEstado.setOnInputMethodTextChanged(event -> {
+        this.comboEstado.setOnAction(event -> {
+            System.out.println(this.comboEstado.getValue().toString());
             ObservableList<Cidade> cidades =
                     FXCollections.observableArrayList(
-                            this.cidadeDao.findAll()
+                            this.cidadeDao.findCidadeByEstado(
+                                    ((Estado) this.comboEstado.getSelectionModel()
+                                            .getSelectedItem()).getId())
                     );
             this.comboCidade.setItems(cidades);
         });
@@ -85,8 +88,10 @@ public class FXMLClienteCadastroController implements Initializable {
     private void save() {
         cliente.setNome(textNome.getText());
         cliente.setCpf(textCpf.getText());
-        cliente.setNro(Integer.valueOf(textNumero.getText()));
+        cliente.setNro(textNumero.getText());
         cliente.setDataNascimento(datePickerNascimento.getValue());
+        cliente.setEstado(((Estado) comboEstado.getSelectionModel().getSelectedItem()));
+        cliente.setCidade(((Cidade) comboCidade.getSelectionModel().getSelectedItem()));
 
         if (this.clienteDao.isValid(cliente)) {
             this.clienteDao.save(cliente);
@@ -106,7 +111,7 @@ public class FXMLClienteCadastroController implements Initializable {
             this.textId.setText(cliente.getId().toString());
             this.textNome.setText(cliente.getNome());
             this.textCpf.setText(cliente.getCpf());
-            this.textNumero.setText(String.valueOf(cliente.getNro()));
+            this.textNumero.setText(cliente.getNro());
             this.datePickerNascimento.setValue(cliente.getDataNascimento());
             this.comboCidade.setValue(cliente.getCidade());
             this.comboEstado.setValue(cliente.getEstado());

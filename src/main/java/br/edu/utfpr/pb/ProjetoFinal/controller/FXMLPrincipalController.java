@@ -81,6 +81,22 @@ public class FXMLPrincipalController implements Initializable {
         ));
     }
 
+    // trocar
+    @FXML
+    public void loadContaReceber(ActionEvent event) throws IOException {
+        setDataPane(openVBox(
+                "/fxml/FXMLClienteLista.fxml"
+        ));
+    }
+
+    // trocar
+    @FXML
+    public void loadContaPagar(ActionEvent event) throws IOException {
+        setDataPane(openVBox(
+                "/fxml/FXMLClienteLista.fxml"
+        ));
+    }
+
 //    @FXML
 //    private void showReportProduto(ActionEvent event) {
 //        GenerateReport generateReport = new GenerateReport();

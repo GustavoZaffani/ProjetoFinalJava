@@ -14,15 +14,15 @@
         <URL value="@/styles/style.css" />
     </stylesheets>
     <children>
-        <Label layoutX="111.0" layoutY="33.0" text="Autenticação do Sistema">
+        <Label alignment="CENTER" layoutX="111.0" layoutY="33.0" text="Autenticação do Sistema" textAlignment="CENTER" textFill="#100622" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <font>
                 <Font size="22.0" />
             </font>
         </Label>
         <Label layoutX="33.0" layoutY="87.0" text="Usuário" />
         <Label layoutX="32.0" layoutY="149.0" text="Senha" />
-        <TextField fx:id="txtUsuario" layoutX="32.0" layoutY="104.0" prefHeight="25.0" prefWidth="385.0" />
-        <Button fx:id="btnEntrar" layoutX="128.0" layoutY="213.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="194.0" styleClass=".btn-warning" text="Entrar" />
+        <TextField fx:id="txtUsuario" layoutX="32.0" layoutY="104.0" prefHeight="25.0" prefWidth="385.0" style="-fx-border-radius: 50px;" />
+        <Button fx:id="btnEntrar" layoutX="128.0" layoutY="211.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="194.0" styleClass=".btn-info" stylesheets="@../styles/bootstrap.css" text="Entrar" />
         <PasswordField fx:id="txtSenha" layoutX="32.0" layoutY="166.0" prefHeight="25.0" prefWidth="385.0" />
     </children>
 </AnchorPane>

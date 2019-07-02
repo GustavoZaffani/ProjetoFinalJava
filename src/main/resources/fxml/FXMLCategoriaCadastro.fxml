@@ -6,21 +6,17 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" maxHeight="212.0" maxWidth="275.0" minHeight="212.0" minWidth="275.0" prefHeight="212.0"
-            prefWidth="275.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="br.edu.utfpr.pb.ProjetoFinal.controller.FXMLCategoriaCadastroController">
+<AnchorPane id="AnchorPane" maxHeight="260.0" maxWidth="325.0" minHeight="212.0" minWidth="275.0" prefHeight="240.0" prefWidth="325.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.utfpr.pb.ProjetoFinal.controller.FXMLCategoriaCadastroController">
     <stylesheets>
-        <URL value="@/styles/bootstrap.css"></URL>
-        <URL value="@/styles/style.css"/>
+        <URL value="@/styles/bootstrap.css" />
+        <URL value="@/styles/style.css" />
     </stylesheets>
     <children>
-        <Label layoutX="30.0" layoutY="25.0" text="Código"/>
-        <Label layoutX="30.0" layoutY="81.0" text="Descricão"/>
-        <TextField fx:id="textId" editable="false" layoutX="30.0" layoutY="42.0" prefHeight="25.0" prefWidth="217.0"/>
-        <TextField fx:id="textDescricao" layoutX="30.0" layoutY="101.0" prefHeight="25.0" prefWidth="208.0"/>
-        <Button layoutX="161.0" layoutY="158.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0"
-                prefWidth="62.0" text="Salvar"/>
-        <Button layoutX="69.0" layoutY="158.0" mnemonicParsing="false" onAction="#cancel" text="Cancelar"/>
+        <Label layoutX="36.0" layoutY="33.0" text="Código" />
+        <Label layoutX="36.0" layoutY="104.0" text="Descricão" />
+        <TextField fx:id="textId" editable="false" layoutX="36.0" layoutY="50.0" prefHeight="25.0" prefWidth="254.0" />
+        <TextField fx:id="textDescricao" layoutX="36.0" layoutY="121.0" prefHeight="25.0" prefWidth="254.0" />
+        <Button layoutX="179.0" layoutY="171.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="110.0" text="Salvar" />
+        <Button layoutX="36.0" layoutY="171.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="110.0" text="Cancelar" />
     </children>
 </AnchorPane>

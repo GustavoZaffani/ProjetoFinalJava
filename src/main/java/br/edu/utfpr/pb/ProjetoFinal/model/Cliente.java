@@ -49,9 +49,9 @@ public class Cliente implements AbstractModel {
     @JoinColumn(name = "cidade_id", referencedColumnName = "id")
     private Cidade cidade;
 
-    @NotBlank(message = "O campo 'Número' é de preenchimento obrigatório'")
+    @NotEmpty(message = "O campo 'Número' é de preenchimento obrigatório'")
     @Column(name = "nro", nullable = false)
-    private Integer nro;
+    private String nro;
 
     @OneToMany(mappedBy = "cliente", orphanRemoval = true,
             cascade = CascadeType.ALL)
@@ -60,76 +60,4 @@ public class Cliente implements AbstractModel {
     @Lob
     @Column(name = "foto")
     private byte[] foto;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public Estado getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Estado estado) {
-        this.estado = estado;
-    }
-
-    public Cidade getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(Cidade cidade) {
-        this.cidade = cidade;
-    }
-
-    public Integer getNro() {
-        return nro;
-    }
-
-    public void setNro(Integer nro) {
-        this.nro = nro;
-    }
-
-    public List<Contato> getContatos() {
-        return contatos;
-    }
-
-    public void setContatos(List<Contato> contatos) {
-        this.contatos = contatos;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public byte[] getFoto() {
-        return foto;
-    }
-
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
-    }
 }

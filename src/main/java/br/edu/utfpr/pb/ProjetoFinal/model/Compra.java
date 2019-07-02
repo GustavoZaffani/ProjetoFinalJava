@@ -33,36 +33,4 @@ public class Compra implements AbstractModel {
     @OneToMany(mappedBy = "compra",
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<CompraProduto> compraProdutos;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public LocalDate getDataCompra() {
-        return dataCompra;
-    }
-
-    public void setDataCompra(LocalDate dataCompra) {
-        this.dataCompra = dataCompra;
-    }
-
-    public ContaPagar getContaPagar() {
-        return contaPagar;
-    }
-
-    public void setContaPagar(ContaPagar contaPagar) {
-        this.contaPagar = contaPagar;
-    }
-
-    public List<CompraProduto> getCompraProdutos() {
-        return compraProdutos;
-    }
-
-    public void setCompraProdutos(List<CompraProduto> compraProdutos) {
-        this.compraProdutos = compraProdutos;
-    }
 }

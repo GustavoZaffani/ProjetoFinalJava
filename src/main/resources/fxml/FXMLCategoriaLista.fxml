@@ -24,7 +24,7 @@
                 <Button mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="100.0" styleClass="btn-primary" text="Remover" />
             </children>
         </HBox>
-        <TableView fx:id="tableData" prefHeight="345.0" prefWidth="467.0" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
+        <TableView fx:id="tableData" prefHeight="345.0" prefWidth="536.0" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
             <columns>
                 <TableColumn fx:id="columnId" maxWidth="150.0" minWidth="100.0" prefWidth="150.0" text="Código" />
                 <TableColumn fx:id="columnDescricao" maxWidth="-1.0" minWidth="300.0" prefWidth="-1.0" text="Descricão" />
