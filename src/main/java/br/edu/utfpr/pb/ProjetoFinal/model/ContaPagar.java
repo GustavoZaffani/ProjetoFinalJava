@@ -28,9 +28,9 @@ public class ContaPagar implements AbstractModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "O campo 'Detalhes' é de preenchimento obrigatório.")
-    @Column(name = "detalhes", nullable = false)
-    private String detalhesConta;
+    @NotEmpty(message = "O campo 'Descrição' é de preenchimento obrigatório.")
+    @Column(name = "descricao", nullable = false)
+    private String descricao;
 
     @Column(name = "observacao")
     private String observacao;

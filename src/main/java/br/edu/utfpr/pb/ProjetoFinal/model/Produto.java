@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 @Entity
 @Data
@@ -28,13 +29,13 @@ public class Produto implements AbstractModel {
     @Column(name = "nome", length = 50, nullable = false)
     private String nome;
 
-    @NotEmpty(message = "O campo 'Descrição' é de preenchimento obrigatório.")
-    @Column(name = "descricao", length = 500, nullable = false)
-    private String descricao;
+    @DecimalMin(value = "0.01", message = "O valor deve ser maior que R$ 0.00.")
+    @Column(name = "preco_custo", nullable = false)
+    private BigDecimal precoCusto;
 
     @DecimalMin(value = "0.01", message = "O valor deve ser maior que R$ 0.00.")
-    @Column(name = "valor", nullable = false)
-    private Double valor;
+    @Column(name = "preco_venda", nullable = false)
+    private BigDecimal precoVenda;
 
     @NotNull(message = "O campo 'Marca' deve ser selecionado.")
     @ManyToOne
@@ -45,4 +46,8 @@ public class Produto implements AbstractModel {
     @ManyToOne
     @JoinColumn(name = "categoria_id", referencedColumnName = "id")
     private Categoria categoria;
+
+    @NotEmpty(message = "O campo 'Observação' é de preenchimento obrigatório.")
+    @Column(name = "observacao", length = 500, nullable = false)
+    private String observacao;
 }

@@ -81,19 +81,17 @@ public class FXMLPrincipalController implements Initializable {
         ));
     }
 
-    // trocar
     @FXML
     public void loadContaReceber(ActionEvent event) throws IOException {
         setDataPane(openVBox(
-                "/fxml/FXMLClienteLista.fxml"
+                "/fxml/FXMLContaReceberLista.fxml"
         ));
     }
 
-    // trocar
     @FXML
     public void loadContaPagar(ActionEvent event) throws IOException {
         setDataPane(openVBox(
-                "/fxml/FXMLClienteLista.fxml"
+                "/fxml/FXMLContaPagarLista.fxml"
         ));
     }
 

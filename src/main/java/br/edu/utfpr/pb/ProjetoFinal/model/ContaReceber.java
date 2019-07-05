@@ -27,8 +27,8 @@ public class ContaReceber implements AbstractModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "detalhes")
-    private String detalhesConta;
+    @Column(name = "descricao")
+    private String descricao;
 
     @Column(name = "data_vencimento", nullable = false)
     private LocalDate dataVencimento;

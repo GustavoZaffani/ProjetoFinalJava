@@ -26,7 +26,6 @@ public class CompraProduto implements AbstractModel {
     @Column(name = "qtde", nullable = false)
     private Integer qtde;
 
-
     @Column(name = "valor", nullable = false)
     private BigDecimal valor;
 
