@@ -2,33 +2,34 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="462.0" prefWidth="547.0" styleClass="mainFxmlClass"
-            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="br.edu.utfpr.pb.ProjetoFinal.controller.FXMLContaPagarCadastroController">
+<AnchorPane id="AnchorPane" prefHeight="438.0" prefWidth="547.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.utfpr.pb.ProjetoFinal.controller.FXMLContaPagarCadastroController">
     <stylesheets>
-        <URL value="@/styles/bootstrap.css"/>
-        <URL value="@/styles/style.css"/>
+        <URL value="@/styles/bootstrap.css" />
+        <URL value="@/styles/style.css" />
     </stylesheets>
     <children>
-        <Button layoutX="322.0" layoutY="421.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0"
-                prefWidth="100.0" text="Cancelar"/>
-        <Button layoutX="432.0" layoutY="421.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0"
-                prefWidth="100.0" text="Salvar"/>
-        <Label layoutX="22.0" layoutY="32.0" text="Código"/>
-        <Label layoutX="22.0" layoutY="85.0" text="Descrição"/>
-        <Label layoutX="25.0" layoutY="136.0" text="Data da Conta"/>
-        <TextField fx:id="textId" editable="false" layoutX="22.0" layoutY="49.0" prefHeight="25.0" prefWidth="510.0"/>
-        <TextField fx:id="textDescricao" layoutX="22.0" layoutY="102.0" prefHeight="25.0" prefWidth="510.0"/>
-        <Label layoutX="283.0" layoutY="136.0" text="Data do Vencimento"/>
-        <TextArea fx:id="textAreaObservacao" layoutX="22.0" layoutY="264.0" prefHeight="144.0" prefWidth="510.0"/>
-        <Label layoutX="22.0" layoutY="247.0" text="Observações"/>
-        <DatePicker fx:id="datePickerConta" layoutX="22.0" layoutY="160.0" prefHeight="25.0" prefWidth="251.0"/>
-        <DatePicker fx:id="datePickerVencimento" layoutX="282.0" layoutY="160.0" prefHeight="25.0" prefWidth="251.0"/>
+        <Button layoutX="172.0" layoutY="399.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="100.0" text="Cancelar" />
+        <Button layoutX="282.0" layoutY="399.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="100.0" text="Salvar" />
+        <Label layoutX="22.0" layoutY="32.0" text="Código" />
+        <Label layoutX="22.0" layoutY="85.0" text="Descrição" />
+        <Label layoutX="23.0" layoutY="190.0" text="Data da Conta" />
+        <TextField fx:id="textId" editable="false" layoutX="22.0" layoutY="49.0" prefHeight="25.0" prefWidth="510.0" />
+        <TextField fx:id="textDescricao" layoutX="22.0" layoutY="102.0" prefHeight="25.0" prefWidth="510.0" />
+        <Label layoutX="283.0" layoutY="190.0" text="Data do Vencimento" />
+        <TextArea fx:id="textAreaObservacao" layoutX="22.0" layoutY="260.0" prefHeight="126.0" prefWidth="510.0" />
+        <Label layoutX="23.0" layoutY="241.0" text="Observações" />
+      <DatePicker fx:id="datePickerConta" layoutX="22.0" layoutY="207.0" prefHeight="25.0" prefWidth="251.0" />
+      <DatePicker fx:id="datePickerVencimento" layoutX="282.0" layoutY="207.0" prefHeight="25.0" prefWidth="251.0" />
+      <ComboBox fx:id="comboTipoPag" layoutX="22.0" layoutY="155.0" prefHeight="25.0" prefWidth="251.0" />
+      <Label layoutX="25.0" layoutY="135.0" text="Tipo de Pagamento" />
+      <Label layoutX="283.0" layoutY="135.0" text="Valor" />
+      <TextField fx:id="textValor" layoutX="283.0" layoutY="155.0" prefHeight="25.0" prefWidth="251.0" />
     </children>
 </AnchorPane>

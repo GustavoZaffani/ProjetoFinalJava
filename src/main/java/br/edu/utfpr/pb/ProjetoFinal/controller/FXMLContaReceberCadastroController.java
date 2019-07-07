@@ -4,6 +4,7 @@ import br.edu.utfpr.pb.ProjetoFinal.dao.CategoriaDao;
 import br.edu.utfpr.pb.ProjetoFinal.dao.ContaReceberDao;
 import br.edu.utfpr.pb.ProjetoFinal.dao.MarcaDao;
 import br.edu.utfpr.pb.ProjetoFinal.dao.ProdutoDao;
+import br.edu.utfpr.pb.ProjetoFinal.enumeration.ETipoPagamento;
 import br.edu.utfpr.pb.ProjetoFinal.model.Categoria;
 import br.edu.utfpr.pb.ProjetoFinal.model.ContaReceber;
 import br.edu.utfpr.pb.ProjetoFinal.model.Marca;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
 
 import java.math.BigDecimal;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 /**
@@ -34,6 +36,14 @@ public class FXMLContaReceberCadastroController implements Initializable {
     private DatePicker datePickerVencimento;
     @FXML
     private TextArea textAreaObservacao;
+    @FXML
+    private TextField textValor;
+    @FXML
+    private ComboBox comboTipoPag;
+    @FXML
+    private TextField textNroParcelas;
+    @FXML
+    private TextField textValorParcela;
 
     private ContaReceber contaReceber;
     private ContaReceberDao contaReceberDao;
@@ -43,6 +53,29 @@ public class FXMLContaReceberCadastroController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         this.contaReceberDao = new ContaReceberDao();
         this.contaReceber = new ContaReceber();
+
+        ObservableList<ETipoPagamento> tiposPagamento =
+            FXCollections.observableArrayList(
+                ETipoPagamento.A, ETipoPagamento.P
+            );
+
+        this.comboTipoPag.setOnAction(event -> {
+            if (this.comboTipoPag.getValue().equals(ETipoPagamento.A)) {
+                this.textNroParcelas.setDisable(true);
+                this.textNroParcelas.setText("1");
+            } else {
+                this.textNroParcelas.setDisable(false);
+            }
+        });
+        this.comboTipoPag.setItems(tiposPagamento);
+        this.setDefaultValues();
+    }
+
+    private void setDefaultValues() {
+        this.textValor.setText(BigDecimal.ZERO.toString());
+        this.datePickerConta.setValue(LocalDate.now());
+        this.datePickerVencimento.setValue(LocalDate.now());
+        this.textValorParcela.setText(BigDecimal.ZERO.toString());
     }
 
     public void setContaReceber(ContaReceber contaReceber) {
@@ -53,6 +86,10 @@ public class FXMLContaReceberCadastroController implements Initializable {
             this.datePickerConta.setValue(contaReceber.getDataConta());
             this.datePickerVencimento.setValue(contaReceber.getDataVencimento());
             this.textAreaObservacao.setText(contaReceber.getObservacao());
+            this.comboTipoPag.setValue(contaReceber.getTipoPagamento());
+            this.textValor.setText(contaReceber.getValorConta().toString());
+            this.textNroParcelas.setText(contaReceber.getNroParcelas().toString());
+            this.textValorParcela.setText(contaReceber.getValorParcela().toString());
         }
     }
 
@@ -71,6 +108,11 @@ public class FXMLContaReceberCadastroController implements Initializable {
         contaReceber.setDataConta(datePickerConta.getValue());
         contaReceber.setDataVencimento(datePickerVencimento.getValue());
         contaReceber.setObservacao(textAreaObservacao.getText());
+        contaReceber.setValorConta(new BigDecimal(textValor.getText()));
+        contaReceber.setTipoPagamento((ETipoPagamento)comboTipoPag.getSelectionModel().getSelectedItem());
+        contaReceber.setValorParcela(new BigDecimal(textValorParcela.getText()));
+        contaReceber.setNroParcelas(new Integer(textNroParcelas.getText()));
+
         if (this.contaReceberDao.isValid(contaReceber)) {
             this.contaReceberDao.save(contaReceber);
             this.dialogStage.close();
@@ -82,4 +124,6 @@ public class FXMLContaReceberCadastroController implements Initializable {
             alert.showAndWait();
         }
     }
+
+
 }

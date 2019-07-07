@@ -95,6 +95,13 @@ public class FXMLPrincipalController implements Initializable {
         ));
     }
 
+    @FXML
+    public void loadVendas(ActionEvent event) throws IOException {
+        setDataPane(openVBox(
+                "/fxml/FXMLVendaLista.fxml"
+        ));
+    }
+
 //    @FXML
 //    private void showReportProduto(ActionEvent event) {
 //        GenerateReport generateReport = new GenerateReport();

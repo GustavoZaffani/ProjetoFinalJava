@@ -4,6 +4,7 @@ import br.edu.utfpr.pb.ProjetoFinal.dao.CategoriaDao;
 import br.edu.utfpr.pb.ProjetoFinal.dao.MarcaDao;
 import br.edu.utfpr.pb.ProjetoFinal.dao.ProdutoDao;
 import br.edu.utfpr.pb.ProjetoFinal.dao.UsuarioDao;
+import br.edu.utfpr.pb.ProjetoFinal.enumeration.ETipoPagamento;
 import br.edu.utfpr.pb.ProjetoFinal.model.Categoria;
 import br.edu.utfpr.pb.ProjetoFinal.model.Marca;
 import br.edu.utfpr.pb.ProjetoFinal.model.Produto;

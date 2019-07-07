@@ -4,12 +4,13 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 // TODO necessário realizar as alterações
 @Entity
 @Data
 @Table(name = "venda_produto")
-public class VendaProduto implements Serializable {
+public class VendaProduto implements Serializable, AbstractModel {
 
     private static final long serialVersionUID = 1L;
 
@@ -21,7 +22,7 @@ public class VendaProduto implements Serializable {
     private int quantidade;
 
     @Column(nullable = false)
-    private Double valor;
+    private BigDecimal valor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "produto_id", referencedColumnName = "id", nullable = false)

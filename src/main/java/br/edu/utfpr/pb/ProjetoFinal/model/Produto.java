@@ -50,4 +50,8 @@ public class Produto implements AbstractModel {
     @NotEmpty(message = "O campo 'Observação' é de preenchimento obrigatório.")
     @Column(name = "observacao", length = 500, nullable = false)
     private String observacao;
+
+    public String toString() {
+        return this.getNome();
+    }
 }

@@ -14,4 +14,9 @@ public enum ETipoPagamento {
     public String getTipoPagamento() {
         return pagamento;
     }
+
+    @Override
+    public String toString() {
+        return pagamento;
+    }
 }

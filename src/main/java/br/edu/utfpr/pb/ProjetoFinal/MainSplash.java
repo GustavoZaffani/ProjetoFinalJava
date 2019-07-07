@@ -43,15 +43,15 @@ public class MainSplash extends Application{
 
     @Override
     public void init() {
-//        Usuario usuario = new Usuario();
-//        usuario.setNome("Gustavo");
-//        usuario.setCpf("1234");
-//        usuario.setAdministrador(true);
-//        usuario.setAtivo(true);
-//        usuario.setDataNascimento(LocalDate.of(1999,07,18));
-//        usuario.setEmail("gustavo@zaffani.com");
-//        usuario.setSenha(CriptografiaUtil.criptografa("123"));
-//        new UsuarioDao().save(usuario);
+        Usuario usuario = new Usuario();
+        usuario.setNome("Gustavo");
+        usuario.setCpf("1234");
+        usuario.setAdministrador(true);
+        usuario.setAtivo(true);
+        usuario.setDataNascimento(LocalDate.of(1999,07,18));
+        usuario.setEmail("admin");
+        usuario.setSenha(CriptografiaUtil.criptografa("123"));
+        new UsuarioDao().save(usuario);
         ImageView splash = new ImageView(new Image(
                 getClass().getResource("/images/logoUTFPR.jpg").toExternalForm()
         ));

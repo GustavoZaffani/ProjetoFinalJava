@@ -64,7 +64,6 @@ public class FXMLClienteCadastroController implements Initializable {
         this.comboEstado.setItems(estados);
 
         this.comboEstado.setOnAction(event -> {
-            System.out.println(this.comboEstado.getValue().toString());
             ObservableList<Cidade> cidades =
                     FXCollections.observableArrayList(
                             this.cidadeDao.findCidadeByEstado(

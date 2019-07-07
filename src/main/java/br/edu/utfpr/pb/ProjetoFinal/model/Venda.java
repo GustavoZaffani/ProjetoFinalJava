@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Table(name = "venda")
-public class Venda implements Serializable {
+public class Venda implements Serializable, AbstractModel {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,20 +25,18 @@ public class Venda implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 25, nullable = false)
-    private String numeroDocumento;
+    @Column(name = "descricao", length = 60, nullable = false)
+    private String descricao;
 
-    @Column(nullable = false)
-    private LocalDate data;
-
-    private LocalDate dataEntrega;
+    @Column(name = "data_venda", nullable = false)
+    private LocalDate dataVenda;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", referencedColumnName = "id")
     private Cliente cliente;
 
     @OneToMany(mappedBy = "venda",
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private List<VendaProduto> vendaProdutos;
 
@@ -50,12 +48,6 @@ public class Venda implements Serializable {
     private Double valorTotal;
 
     public Double getValorTotal() {
-        return vendaProdutos.stream().mapToDouble(vp -> vp.getValor() *
-                vp.getQuantidade()).sum();
-    }
-
-    @Override
-    public String toString() {
-        return "Venda{" + "id=" + id + ", numeroDocumento=" + numeroDocumento + ", data=" + data + ", dataEntrega=" + dataEntrega + '}';
+        return null;
     }
 }

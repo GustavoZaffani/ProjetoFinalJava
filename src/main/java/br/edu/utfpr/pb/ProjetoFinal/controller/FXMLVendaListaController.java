@@ -7,9 +7,9 @@
 package br.edu.utfpr.pb.ProjetoFinal.controller;
 
 import br.edu.utfpr.pb.ProjetoFinal.dao.ContaPagarDao;
-import br.edu.utfpr.pb.ProjetoFinal.dao.ContaReceberDao;
+import br.edu.utfpr.pb.ProjetoFinal.dao.VendaDao;
 import br.edu.utfpr.pb.ProjetoFinal.model.ContaPagar;
-import br.edu.utfpr.pb.ProjetoFinal.model.ContaReceber;
+import br.edu.utfpr.pb.ProjetoFinal.model.Venda;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,28 +32,26 @@ import java.util.ResourceBundle;
 /**
  * @author Gustavo Zaffani
  */
-public class FXMLContaPagarListaController implements Initializable {
+public class FXMLVendaListaController implements Initializable {
 
     @FXML
-    private TableView<ContaPagar> tableData;
+    private TableView<Venda> tableData;
     @FXML
-    private TableColumn<ContaPagar, Long> columnId;
+    private TableColumn<Venda, Long> columnId;
     @FXML
-    private TableColumn<ContaPagar, String> columnDescricao;
+    private TableColumn<Venda, String> columnDescricao;
     @FXML
-    private TableColumn<ContaPagar, BigDecimal> columnValor;
+    private TableColumn<Venda, Double> columnValorTotal;
     @FXML
-    private TableColumn<ContaPagar, LocalDate> columnDtConta;
-    @FXML
-    private TableColumn<ContaPagar, LocalDate> columnDtVenc;
+    private TableColumn<Venda, LocalDate> columnDtVenda;
     @FXML
     private Button buttonEdit;
-    private ContaPagarDao contaPagarDao;
-    private ObservableList<ContaPagar> list = FXCollections.observableArrayList();
+    private VendaDao vendaDao;
+    private ObservableList<Venda> list = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.contaPagarDao = new ContaPagarDao();
+        this.vendaDao = new VendaDao();
         this.tableData.getSelectionModel()
                 .setSelectionMode(
                         SelectionMode.SINGLE);
@@ -68,34 +66,31 @@ public class FXMLContaPagarListaController implements Initializable {
         this.columnDescricao.setCellValueFactory(
                 new PropertyValueFactory<>("descricao")
         );
-        this.columnValor.setCellValueFactory(
-                new PropertyValueFactory<>("valorConta")
+        this.columnValorTotal.setCellValueFactory(
+                new PropertyValueFactory<>("valorTotal")
         );
-        this.columnDtConta.setCellValueFactory(
-                new PropertyValueFactory<>("dataConta")
-        );
-        this.columnDtVenc.setCellValueFactory(
-                new PropertyValueFactory<>("dataVencimento")
+        this.columnDtVenda.setCellValueFactory(
+                new PropertyValueFactory<>("dataVenda")
         );
     }
 
     private void loadData() {
         this.list.clear();
-        this.list.addAll(this.contaPagarDao.findAll());
+        this.list.addAll(this.vendaDao.findAll());
         tableData.setItems(list);
     }
 
-    private void openForm(ContaPagar contaPagar,
+    private void openForm(Venda venda,
                           ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(
                     this.getClass()
-                            .getResource("/fxml/FXMLContaPagarCadastro.fxml"));
+                            .getResource("/fxml/FXMLVendaCadastro.fxml"));
             AnchorPane pane = (AnchorPane) loader.load();
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Cadastro de Contas a Pagar");
+            dialogStage.setTitle("Carrinho");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(
                     ((Node) buttonEdit)
@@ -103,9 +98,9 @@ public class FXMLContaPagarListaController implements Initializable {
             Scene scene = new Scene(pane);
             dialogStage.setScene(scene);
 
-            FXMLContaPagarCadastroController controller =
+            FXMLVendaCadastroController controller =
                     loader.getController();
-            controller.setContaPagar(contaPagar);
+            controller.setVenda(venda);
             controller.setDialogStage(dialogStage);
             dialogStage.showAndWait();
 
@@ -124,15 +119,15 @@ public class FXMLContaPagarListaController implements Initializable {
 
     @FXML
     private void edit(ActionEvent event) {
-        ContaPagar contaPagar =
+        Venda venda =
                 tableData.getSelectionModel()
                         .getSelectedItem();
-        this.openForm(contaPagar, event);
+        this.openForm(venda, event);
     }
 
     @FXML
     private void newRecord(ActionEvent event) {
-        this.openForm(new ContaPagar(), event);
+        this.openForm(new Venda(), event);
     }
 
     @FXML
@@ -140,9 +135,9 @@ public class FXMLContaPagarListaController implements Initializable {
         if (tableData.getSelectionModel()
                 .getSelectedIndex() >= 0) {
             try {
-                ContaPagar contaPagar = tableData
+                Venda venda = tableData
                         .getSelectionModel().getSelectedItem();
-                contaPagarDao.delete(contaPagar.getId());
+                vendaDao.delete(venda.getId());
                 tableData.getItems().remove(
                         tableData.getSelectionModel()
                                 .getSelectedIndex());

@@ -1,16 +1,20 @@
 package br.edu.utfpr.pb.ProjetoFinal.controller;
 
+import br.edu.utfpr.pb.ProjetoFinal.dao.ContaPagarDao;
 import br.edu.utfpr.pb.ProjetoFinal.dao.ContaReceberDao;
+import br.edu.utfpr.pb.ProjetoFinal.enumeration.ETipoPagamento;
+import br.edu.utfpr.pb.ProjetoFinal.model.ContaPagar;
 import br.edu.utfpr.pb.ProjetoFinal.model.ContaReceber;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.math.BigDecimal;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 /**
@@ -28,25 +32,44 @@ public class FXMLContaPagarCadastroController implements Initializable {
     private DatePicker datePickerVencimento;
     @FXML
     private TextArea textAreaObservacao;
+    @FXML
+    private TextField textValor;
+    @FXML
+    private ComboBox comboTipoPag;
 
-    private ContaReceber contaReceber;
-    private ContaReceberDao contaReceberDao;
+    private ContaPagar contaPagar;
+    private ContaPagarDao contaPagarDao;
     private Stage dialogStage;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.contaReceberDao = new ContaReceberDao();
-        this.contaReceber = new ContaReceber();
+        this.contaPagarDao = new ContaPagarDao();
+        this.contaPagar = new ContaPagar();
+
+        ObservableList<ETipoPagamento> tiposPagamento =
+            FXCollections.observableArrayList(
+                ETipoPagamento.A, ETipoPagamento.P
+            );
+        this.comboTipoPag.setItems(tiposPagamento);
+        this.setDefaultValues();
     }
 
-    public void setContaReceber(ContaReceber contaReceber) {
-        this.contaReceber = contaReceber;
-        if (contaReceber.getId() != null) {
-            this.textId.setText(contaReceber.getId().toString());
-            this.textDescricao.setText(contaReceber.getDescricao());
-            this.datePickerConta.setValue(contaReceber.getDataConta());
-            this.datePickerVencimento.setValue(contaReceber.getDataVencimento());
-            this.textAreaObservacao.setText(contaReceber.getObservacao());
+    private void setDefaultValues() {
+        this.textValor.setText(BigDecimal.ZERO.toString());
+        this.datePickerConta.setValue(LocalDate.now());
+        this.datePickerVencimento.setValue(LocalDate.now());
+    }
+
+    public void setContaPagar(ContaPagar contaPagar) {
+        this.contaPagar = contaPagar;
+        if (contaPagar.getId() != null) {
+            this.textId.setText(contaPagar.getId().toString());
+            this.textDescricao.setText(contaPagar.getDescricao());
+            this.datePickerConta.setValue(contaPagar.getDataConta());
+            this.datePickerVencimento.setValue(contaPagar.getDataVencimento());
+            this.textAreaObservacao.setText(contaPagar.getObservacao());
+            this.comboTipoPag.setValue(contaPagar.getTipoPagamento());
+            this.textValor.setText(contaPagar.getValorConta().toString());
         }
     }
 
@@ -61,19 +84,24 @@ public class FXMLContaPagarCadastroController implements Initializable {
 
     @FXML
     private void save() {
-        contaReceber.setDescricao(textDescricao.getText());
-        contaReceber.setDataConta(datePickerConta.getValue());
-        contaReceber.setDataVencimento(datePickerVencimento.getValue());
-        contaReceber.setObservacao(textAreaObservacao.getText());
-        if (this.contaReceberDao.isValid(contaReceber)) {
-            this.contaReceberDao.save(contaReceber);
+        contaPagar.setDescricao(textDescricao.getText());
+        contaPagar.setDataConta(datePickerConta.getValue());
+        contaPagar.setDataVencimento(datePickerVencimento.getValue());
+        contaPagar.setObservacao(textAreaObservacao.getText());
+        contaPagar.setValorConta(new BigDecimal(textValor.getText()));
+        contaPagar.setTipoPagamento((ETipoPagamento)comboTipoPag.getSelectionModel().getSelectedItem());
+
+        if (this.contaPagarDao.isValid(contaPagar)) {
+            this.contaPagarDao.save(contaPagar);
             this.dialogStage.close();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText("Erro ao salvar registro");
-            alert.setContentText(this.contaReceberDao.getErrors(contaReceber));
+            alert.setContentText(this.contaPagarDao.getErrors(contaPagar));
             alert.showAndWait();
         }
     }
+
+
 }

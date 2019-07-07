@@ -60,4 +60,8 @@ public class Cliente implements AbstractModel {
     @Lob
     @Column(name = "foto")
     private byte[] foto;
+
+    public String toString() {
+        return this.getNome();
+    }
 }
