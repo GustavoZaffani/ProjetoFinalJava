@@ -1,26 +1,17 @@
 package br.edu.utfpr.pb.ProjetoFinal.controller;
 
-import br.edu.utfpr.pb.ProjetoFinal.db.DatabaseConnection;
 import br.edu.utfpr.pb.ProjetoFinal.model.Usuario;
-import br.edu.utfpr.pb.ProjetoFinal.util.GenerateReport;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
-import net.sf.jasperreports.view.JasperViewer;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 /**

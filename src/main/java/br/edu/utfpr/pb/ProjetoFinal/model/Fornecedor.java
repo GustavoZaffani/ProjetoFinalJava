@@ -43,7 +43,7 @@ public class Fornecedor implements AbstractModel {
     private String ie;
 
     @NotNull(message = "O campo 'Data de Fundação' é de preenchimento obrigatório.")
-    @Column(name = "data_nascimento", nullable = false)
+    @Column(name = "data_fundacao", nullable = false)
     private LocalDate dataFundacao;
 
     @NotNull(message = "O campo 'Estado' deve ser selecionado.")

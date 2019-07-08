@@ -2,8 +2,8 @@ package br.edu.utfpr.pb.ProjetoFinal.enumeration;
 
 public enum ETipoPagamento {
 
-    A("A VISTA"),
-    P("A PRAZO");
+    A("A vista"),
+    P("A prazo");
 
     private String pagamento;
 
