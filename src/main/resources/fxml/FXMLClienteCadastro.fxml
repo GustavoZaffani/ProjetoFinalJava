@@ -5,40 +5,77 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" maxHeight="557.0" maxWidth="634.0" minHeight="212.0" minWidth="275.0" prefHeight="463.0" prefWidth="634.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.utfpr.pb.ProjetoFinal.controller.FXMLClienteCadastroController">
+<AnchorPane id="AnchorPane" maxHeight="557.0" maxWidth="634.0" minHeight="212.0" minWidth="275.0" prefHeight="463.0" prefWidth="596.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.utfpr.pb.ProjetoFinal.controller.FXMLClienteCadastroController">
     <stylesheets>
         <URL value="@/styles/bootstrap.css" />
         <URL value="@/styles/style.css" />
     </stylesheets>
     <children>
-        <Label layoutX="30.0" layoutY="25.0" text="Código" />
-        <Label layoutX="30.0" layoutY="81.0" text="Nome" />
-        <TextField fx:id="textId" editable="false" layoutX="30.0" layoutY="42.0" prefHeight="25.0" prefWidth="286.0" />
-        <TextField fx:id="textNome" layoutX="30.0" layoutY="101.0" prefHeight="25.0" prefWidth="286.0" />
-        <Button layoutX="520.0" layoutY="425.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="100.0" text="Salvar" />
-        <Button layoutX="401.0" layoutY="425.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="100.0" text="Cancelar" />
-      <Label layoutX="30.0" layoutY="138.0" text="CPF" />
-      <TextField fx:id="textCpf" layoutX="30.0" layoutY="155.0" prefHeight="25.0" prefWidth="286.0" />
-      <Label layoutX="30.0" layoutY="189.0" text="Data de Nascimento" />
-      <DatePicker fx:id="datePickerNascimento" layoutX="30.0" layoutY="206.0" prefHeight="25.0" prefWidth="286.0" />
-      <Label layoutX="30.0" layoutY="245.0" text="Estado" />
-      <ComboBox fx:id="comboEstado" layoutX="30.0" layoutY="262.0" prefHeight="25.0" prefWidth="286.0" />
-      <Label layoutX="30.0" layoutY="305.0" text="Cidade" />
-      <ComboBox fx:id="comboCidade" layoutX="30.0" layoutY="326.0" prefHeight="25.0" prefWidth="286.0" />
-      <Label layoutX="30.0" layoutY="361.0" text="Número" />
-      <TextField fx:id="textNumero" layoutX="30.0" layoutY="378.0" prefHeight="25.0" prefWidth="286.0" />
-      <Label layoutX="350.0" layoutY="25.0" text="Foto" />
-      <ImageView fx:id="imageFoto" fitHeight="255.0" fitWidth="244.0" layoutX="350.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/user.jpg" />
-         </image>
-      </ImageView>
-      <Button fx:id="buttonFoto" layoutX="388.0" layoutY="326.0" mnemonicParsing="false" onAction="#loadImage" prefHeight="25.0" prefWidth="169.0" text="Carregar Foto" />
-      <Button fx:id="buttonRemoveFoto" layoutX="388.0" layoutY="366.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="169.0" text="Remover Foto" />
+        <TabPane layoutY="1.0" prefHeight="463.0" prefWidth="596.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Dados Básicos">
+                    <content>
+                        <AnchorPane prefHeight="434.0" prefWidth="596.0">
+                            <children>
+                                <Label layoutX="22.0" layoutY="23.0" text="Código" />
+                                <TextField fx:id="textId" editable="false" layoutX="21.0" layoutY="42.0" prefHeight="25.0" prefWidth="286.0" />
+                                <Label layoutX="22.0" layoutY="75.0" text="Nome" />
+                                <TextField fx:id="textNome" layoutX="21.0" layoutY="94.0" prefHeight="25.0" prefWidth="286.0" />
+                                <Label layoutX="22.0" layoutY="128.0" text="CPF" />
+                                <TextField fx:id="textCpf" layoutX="21.0" layoutY="147.0" prefHeight="25.0" prefWidth="286.0" />
+                                <Label layoutX="22.0" layoutY="181.0" text="Data de Nascimento" />
+                                <DatePicker fx:id="datePickerNascimento" layoutX="21.0" layoutY="199.0" prefHeight="25.0" prefWidth="287.0" />
+                                <Label layoutX="22.0" layoutY="237.0" text="Estado" />
+                                <ComboBox fx:id="comboEstado" layoutX="22.0" layoutY="254.0" prefHeight="25.0" prefWidth="286.0" />
+                                <Label layoutX="22.0" layoutY="287.0" text="Cidade" />
+                                <ComboBox fx:id="comboCidade" layoutX="22.0" layoutY="304.0" prefHeight="25.0" prefWidth="286.0" />
+                                <Label layoutX="22.0" layoutY="337.0" text="Número" />
+                                <TextField fx:id="textNumero" layoutX="21.0" layoutY="356.0" prefHeight="25.0" prefWidth="286.0" />
+                                <ImageView fx:id="imageFoto" fitHeight="227.0" fitWidth="228.0" layoutX="335.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/user.jpg" />
+                                    </image>
+                                </ImageView>
+                                <Label layoutX="335.0" layoutY="23.0" text="Código" />
+                                <Button fx:id="buttonFoto" layoutX="382.0" layoutY="304.0" mnemonicParsing="false" onAction="#loadImage" prefHeight="25.0" prefWidth="114.0" text="Carregar Foto" />
+                                <Button layoutX="203.0" layoutY="395.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="114.0" text="Cancelar" />
+                                <Button layoutX="325.0" layoutY="395.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="114.0" text="Salvar" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Contatos">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="25.0" layoutY="76.0" text="Telefone" />
+                        <TextField fx:id="textTelefone" layoutX="25.0" layoutY="93.0" prefHeight="25.0" prefWidth="417.0" />
+                        <ComboBox fx:id="comboTipo" layoutX="287.0" layoutY="43.0" prefHeight="25.0" prefWidth="280.0" />
+                        <Label layoutX="286.0" layoutY="26.0" text="Tipo de Contato" />
+                        <ComboBox fx:id="comboOperadora" layoutX="25.0" layoutY="44.0" prefHeight="25.0" prefWidth="255.0" />
+                        <Label layoutX="25.0" layoutY="27.0" text="Operadora" />
+                        <Button layoutX="454.0" layoutY="92.0" mnemonicParsing="false" onAction="#insertContato" prefHeight="25.0" prefWidth="112.0" text="Adicionar" />
+                        <TableView fx:id="tableData" layoutX="25.0" layoutY="132.0" prefHeight="288.0" prefWidth="542.0">
+                          <columns>
+                            <TableColumn fx:id="columnCod" prefWidth="75.0" text="Cód." />
+                            <TableColumn fx:id="columnTelefone" minWidth="100.0" prefWidth="100.0" text="Telefone" />
+                              <TableColumn fx:id="columnOperadora" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Operadora" />
+                              <TableColumn fx:id="columnTipo" minWidth="100.0" prefWidth="100.0" text="Tipo de Contato" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content></Tab>
+            </tabs>
+        </TabPane>
     </children>
 </AnchorPane>

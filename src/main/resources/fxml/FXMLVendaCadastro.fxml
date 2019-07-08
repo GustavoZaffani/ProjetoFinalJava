@@ -29,7 +29,6 @@
       <Label layoutX="349.0" layoutY="87.0" text="Cliente" />
       <TableView fx:id="tableData" layoutX="24.0" layoutY="201.0" prefHeight="227.0" prefWidth="643.0">
         <columns>
-          <TableColumn fx:id="columnId" maxWidth="50.0" prefWidth="50.0" text="Cód" />
           <TableColumn fx:id="columnDescricao" maxWidth="350.0" minWidth="0.0" prefWidth="350.0" text="Descrição" />
             <TableColumn fx:id="columnQtde" maxWidth="50.0" minWidth="0.0" prefWidth="50.0" text="Qtde" />
             <TableColumn fx:id="columnVlrUnit" maxWidth="100.0" prefWidth="100.0" text="Vlr Unit" />
@@ -45,7 +44,7 @@
       <Button layoutX="612.0" layoutY="158.0" mnemonicParsing="false" onAction="#inserirProduto" text="Inserir" />
       <Label layoutX="348.0" layoutY="142.0" text="Qtde" />
       <TextField fx:id="textQtde" layoutX="348.0" layoutY="159.0" prefHeight="25.0" prefWidth="122.0" />
-      <Line endX="536.0" layoutX="125.0" layoutY="136.0" opacity="0.34" startX="-100.0" />
+      <Line endX="536.0" layoutX="125.0" layoutY="138.0" opacity="0.34" startX="-100.0" />
       <Line endX="536.0" layoutX="131.0" layoutY="485.0" opacity="0.34" startX="-100.0" />
     </children>
 </AnchorPane>

@@ -6,6 +6,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -24,13 +26,33 @@ public class Compra implements AbstractModel {
     @Column(name = "id")
     private Long id;
 
+    @NotEmpty(message = "O campo 'Descrição' é de preenchimento obrigatório.")
+    @Column(name = "descricao", nullable = false)
+    private String descricao;
+
+    @NotNull(message = "O campo 'Data de Compra' deve ser selecionado.")
     @Column(name = "data_compra", nullable = false)
     private LocalDate dataCompra;
 
-    @OneToOne
+    @OneToOne(mappedBy = "compra", cascade = CascadeType.ALL)
     private ContaPagar contaPagar;
 
+    @NotNull(message = "O campo 'Fornecedor' deve ser escolhido.")
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", referencedColumnName = "id")
+    private Fornecedor fornecedor;
+
     @OneToMany(mappedBy = "compra",
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+            cascade = {CascadeType.ALL, CascadeType.REMOVE})
     private List<CompraProduto> compraProdutos;
+
+    @Transient
+    private Double vlrTotal;
+
+    public Double getValorTotal() {
+        return compraProdutos.stream().mapToDouble(vp -> vp.getValor() *
+                vp.getQtde()).sum();
+    }
+
+
 }

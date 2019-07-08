@@ -7,9 +7,7 @@
 package br.edu.utfpr.pb.ProjetoFinal.controller;
 
 import br.edu.utfpr.pb.ProjetoFinal.dao.ContaPagarDao;
-import br.edu.utfpr.pb.ProjetoFinal.dao.ContaReceberDao;
 import br.edu.utfpr.pb.ProjetoFinal.model.ContaPagar;
-import br.edu.utfpr.pb.ProjetoFinal.model.ContaReceber;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

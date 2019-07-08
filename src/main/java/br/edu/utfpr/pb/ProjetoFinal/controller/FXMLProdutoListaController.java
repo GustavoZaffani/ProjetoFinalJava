@@ -1,15 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package br.edu.utfpr.pb.ProjetoFinal.controller;
 
 import br.edu.utfpr.pb.ProjetoFinal.dao.ProdutoDao;
-import br.edu.utfpr.pb.ProjetoFinal.dao.UsuarioDao;
 import br.edu.utfpr.pb.ProjetoFinal.model.Produto;
-import br.edu.utfpr.pb.ProjetoFinal.model.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

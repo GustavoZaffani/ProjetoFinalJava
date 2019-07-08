@@ -16,8 +16,8 @@ import java.util.List;
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "cliente")
-public class Cliente implements AbstractModel {
+@Table(name = "fornecedor")
+public class Fornecedor implements AbstractModel {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,17 +26,25 @@ public class Cliente implements AbstractModel {
     @Column(name = "id")
     private Long id;
 
-    @NotEmpty(message = "O campo 'Nome' é de preenchimento obrigatório.")
-    @Column(name = "nome", length = 50, nullable = false)
-    private String nome;
+    @NotEmpty(message = "O campo 'Razão Social' é de preenchimento obrigatório.")
+    @Column(name = "razao_social", length = 50, nullable = false)
+    private String razaoSocial;
 
-    @NotEmpty(message = "O campo 'CPF' é de preenchimento obrigatório.")
-    @Column(name = "cpf", length = 11, nullable = false)
-    private String cpf;
+    @NotEmpty(message = "O campo 'Nome Fantasia' é de preenchimento obrigatório.")
+    @Column(name = "nome_fantasia", length = 50, nullable = false)
+    private String nomeFantasia;
 
-    @NotNull(message = "O campo 'Data de Nascimento' é de preenchimento obrigatório.")
+    @NotEmpty(message = "O campo 'CNPJ' é de preenchimento obrigatório.")
+    @Column(name = "cnpj", length = 14, nullable = false)
+    private String cnpj;
+
+    @NotEmpty(message = "O campo 'Inscrição Estadual' é de preenchimento obrigatório.")
+    @Column(name = "ie", length = 14, nullable = false)
+    private String ie;
+
+    @NotNull(message = "O campo 'Data de Fundação' é de preenchimento obrigatório.")
     @Column(name = "data_nascimento", nullable = false)
-    private LocalDate dataNascimento;
+    private LocalDate dataFundacao;
 
     @NotNull(message = "O campo 'Estado' deve ser selecionado.")
     @ManyToOne
@@ -52,15 +60,7 @@ public class Cliente implements AbstractModel {
     @Column(name = "nro", nullable = false)
     private String nro;
 
-    @OneToMany(mappedBy = "cliente", orphanRemoval = true,
-            cascade = CascadeType.ALL)
-    private List<Contato> contatos;
-
-    @Lob
-    @Column(name = "foto")
-    private byte[] foto;
-
     public String toString() {
-        return this.getNome();
+        return this.getNomeFantasia();
     }
 }

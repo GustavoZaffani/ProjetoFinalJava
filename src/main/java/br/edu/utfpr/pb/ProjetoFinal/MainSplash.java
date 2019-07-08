@@ -1,7 +1,6 @@
 package br.edu.utfpr.pb.ProjetoFinal;
 
 import br.edu.utfpr.pb.ProjetoFinal.dao.UsuarioDao;
-import br.edu.utfpr.pb.ProjetoFinal.model.Produto;
 import br.edu.utfpr.pb.ProjetoFinal.model.Usuario;
 import br.edu.utfpr.pb.ProjetoFinal.util.CriptografiaUtil;
 import javafx.animation.FadeTransition;
@@ -29,13 +28,13 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class MainSplash extends Application{
+public class MainSplash extends Application {
 
     private Pane splashLayout;
     private ProgressBar loadProgress;
     private Label progressText;
-    private static final int SPLASH_WIDTH = 676;
-    private static final int SPLASH_HEIGHT = 227;
+    private static final int SPLASH_WIDTH = 850;
+    private static final int SPLASH_HEIGHT = 450;
 
     public static void main(String[] args) throws Exception {
         launch(args);
@@ -50,16 +49,17 @@ public class MainSplash extends Application{
         usuario.setAtivo(true);
         usuario.setDataNascimento(LocalDate.of(1999,07,18));
         usuario.setEmail("admin");
-        usuario.setSenha(CriptografiaUtil.criptografa("123"));
+        usuario.setSenha(CriptografiaUtil.criptografa("admin"));
+        System.out.println("crypt: " + usuario.getSenha());
         new UsuarioDao().save(usuario);
         ImageView splash = new ImageView(new Image(
-                getClass().getResource("/images/logoUTFPR.jpg").toExternalForm()
+                getClass().getResource("/images/imgLogo.jpg").toExternalForm()
         ));
         loadProgress = new ProgressBar();
         loadProgress.setPrefWidth(SPLASH_WIDTH - 20);
         loadProgress.setPrefHeight(25.0);
         loadProgress.setStyle("-fx-accent: gray;");
-        progressText = new Label("Aula Java FX  - OO24S.");
+        progressText = new Label("Sistema ERP - LZSoftware");
         splashLayout = new VBox();
         splashLayout.getChildren().addAll(splash, loadProgress, progressText);
         progressText.setAlignment(Pos.CENTER);

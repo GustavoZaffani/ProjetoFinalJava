@@ -35,6 +35,7 @@ public class ContaPagar implements AbstractModel {
     @Column(name = "observacao")
     private String observacao;
 
+    @NotNull(message = "O campo 'Data de Conta' deve ser selecionado.")
     @Column(name = "data_conta", nullable = false)
     private LocalDate dataConta;
 
@@ -49,4 +50,8 @@ public class ContaPagar implements AbstractModel {
     @DecimalMin(value = "0.01", message = "O valor deve ser maior que R$ 0.00.")
     @Column(name = "valor_conta", nullable = false)
     private BigDecimal valorConta;
+
+    @OneToOne
+    @JoinColumn(name = "compra_id", referencedColumnName = "id")
+    private Compra compra;
 }

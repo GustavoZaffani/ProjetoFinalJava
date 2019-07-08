@@ -1,7 +1,7 @@
 package br.edu.utfpr.pb.ProjetoFinal.controller;
 
-import br.edu.utfpr.pb.ProjetoFinal.dao.UsuarioDao;
-import br.edu.utfpr.pb.ProjetoFinal.model.Usuario;
+import br.edu.utfpr.pb.ProjetoFinal.dao.CompraDao;
+import br.edu.utfpr.pb.ProjetoFinal.model.Compra;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,28 +17,32 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 /**
  * @author Gustavo Zaffani
  */
-public class FXMLUsuarioListaController implements Initializable {
+public class FXMLCompraListaController implements Initializable {
 
     @FXML
-    private TableView<Usuario> tableData;
+    private TableView<Compra> tableData;
     @FXML
-    private TableColumn<Usuario, Long> columnId;
+    private TableColumn<Compra, Long> columnId;
     @FXML
-    private TableColumn<Usuario, String> columnNome;
+    private TableColumn<Compra, String> columnDescricao;
+    @FXML
+    private TableColumn<Compra, Double> columnValorTotal;
+    @FXML
+    private TableColumn<Compra, LocalDate> columnDtCompra;
     @FXML
     private Button buttonEdit;
-    private UsuarioDao usuarioDao;
-    private ObservableList<Usuario> list =
-            FXCollections.observableArrayList();
+    private CompraDao compraDao;
+    private ObservableList<Compra> list = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.usuarioDao = new UsuarioDao();
+        this.compraDao = new CompraDao();
         this.tableData.getSelectionModel()
                 .setSelectionMode(
                         SelectionMode.SINGLE);
@@ -50,29 +54,34 @@ public class FXMLUsuarioListaController implements Initializable {
         this.columnId.setCellValueFactory(
                 new PropertyValueFactory<>("id")
         );
-        this.columnNome.setCellValueFactory(
-                new PropertyValueFactory<>("nome")
+        this.columnDescricao.setCellValueFactory(
+                new PropertyValueFactory<>("descricao")
         );
-
+        this.columnValorTotal.setCellValueFactory(
+                new PropertyValueFactory<>("vlrTotal")
+        );
+        this.columnDtCompra.setCellValueFactory(
+                new PropertyValueFactory<>("dataCompra")
+        );
     }
 
     private void loadData() {
         this.list.clear();
-        this.list.addAll(this.usuarioDao.findAll());
+        this.list.addAll(this.compraDao.findAll());
         tableData.setItems(list);
     }
 
-    private void openForm(Usuario usuario,
+    private void openForm(Compra compra,
                           ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(
                     this.getClass()
-                            .getResource("/fxml/FXMLUsuarioCadastro.fxml"));
+                            .getResource("/fxml/FXMLCompraCadastro.fxml"));
             AnchorPane pane = (AnchorPane) loader.load();
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Cadastro de Usuário");
+            dialogStage.setTitle("Compra de Produtos");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(
                     ((Node) buttonEdit)
@@ -80,9 +89,9 @@ public class FXMLUsuarioListaController implements Initializable {
             Scene scene = new Scene(pane);
             dialogStage.setScene(scene);
 
-            FXMLUsuarioCadastroController controller =
+            FXMLCompraCadastroController controller =
                     loader.getController();
-            controller.setUsuario(usuario);
+            controller.setCompra(compra);
             controller.setDialogStage(dialogStage);
             dialogStage.showAndWait();
 
@@ -101,15 +110,15 @@ public class FXMLUsuarioListaController implements Initializable {
 
     @FXML
     private void edit(ActionEvent event) {
-        Usuario usuario =
+        Compra compra =
                 tableData.getSelectionModel()
                         .getSelectedItem();
-        this.openForm(usuario, event);
+        this.openForm(compra, event);
     }
 
     @FXML
     private void newRecord(ActionEvent event) {
-        this.openForm(new Usuario(), event);
+        this.openForm(new Compra(), event);
     }
 
     @FXML
@@ -117,9 +126,9 @@ public class FXMLUsuarioListaController implements Initializable {
         if (tableData.getSelectionModel()
                 .getSelectedIndex() >= 0) {
             try {
-                Usuario usuario = tableData
+                Compra compra = tableData
                         .getSelectionModel().getSelectedItem();
-                usuarioDao.delete(usuario.getId());
+                compraDao.delete(compra.getId());
                 tableData.getItems().remove(
                         tableData.getSelectionModel()
                                 .getSelectedIndex());

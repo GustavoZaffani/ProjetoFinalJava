@@ -12,7 +12,6 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-// TODO necessário realizar as alterações
 @Entity
 @Data
 @NoArgsConstructor

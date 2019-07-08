@@ -27,13 +27,20 @@ public class CompraProduto implements AbstractModel {
     private Integer qtde;
 
     @Column(name = "valor", nullable = false)
-    private BigDecimal valor;
+    private Double valor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "produto_id", referencedColumnName = "id", nullable = false)
-    private Produto produtos;
+    private Produto produto;
 
     @ManyToOne
     @JoinColumn(name = "compra_id", referencedColumnName = "id")
     private Compra compra;
+
+    @Transient
+    private Double vlrTotal;
+
+    public Double getVlrTotal() {
+        return valor * qtde;
+    }
 }

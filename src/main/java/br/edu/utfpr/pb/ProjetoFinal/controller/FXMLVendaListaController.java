@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package br.edu.utfpr.pb.ProjetoFinal.controller;
 
-import br.edu.utfpr.pb.ProjetoFinal.dao.ContaPagarDao;
 import br.edu.utfpr.pb.ProjetoFinal.dao.VendaDao;
-import br.edu.utfpr.pb.ProjetoFinal.model.ContaPagar;
 import br.edu.utfpr.pb.ProjetoFinal.model.Venda;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,7 +16,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.math.BigDecimal;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;

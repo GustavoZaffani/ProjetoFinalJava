@@ -19,6 +19,9 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @author Gustavo Zaffani
+ */
 public class FXMLCategoriaListaController implements Initializable {
 
     @FXML

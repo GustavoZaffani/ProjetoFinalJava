@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" stylesheets="@../styles/bootstrap.css" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.utfpr.pb.ProjetoFinal.controller.FXMLClienteListaController">
+<VBox alignment="CENTER" stylesheets="@../styles/bootstrap.css" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.utfpr.pb.ProjetoFinal.controller.FXMLFornecedorListaController">
     <children>
         <HBox alignment="CENTER_LEFT" prefHeight="68.0" prefWidth="370.0" stylesheets="@../styles/bootstrap.css" VBox.vgrow="NEVER">
             <children>
@@ -21,13 +21,14 @@
                         <Insets right="10.0" />
                     </HBox.margin>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#delete" prefHeight="34.0" prefWidth="100.0" styleClass="btn-primary" text="Remover" />
+                <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="100.0" styleClass="btn-primary" text="Remover" />
             </children>
         </HBox>
         <TableView fx:id="tableData" prefHeight="345.0" prefWidth="555.0" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
             <columns>
                 <TableColumn fx:id="columnId" maxWidth="150.0" minWidth="100.0" prefWidth="150.0" text="Código" />
-                <TableColumn fx:id="columnNome" maxWidth="294.0" minWidth="208.0" prefWidth="251.0" text="Nome" />
+                <TableColumn fx:id="columnRazaoSocial" maxWidth="294.0" minWidth="208.0" prefWidth="251.0" text="Razão Social" />
+            <TableColumn fx:id="columnNomeFantasia" maxWidth="294.0" minWidth="208.0" prefWidth="251.0" text="Nome Fantasia" />
             </columns>
         </TableView>
     </children>

@@ -11,6 +11,9 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @author Gustavo Zaffani
+ */
 public class FXMLMarcaCadastroController implements Initializable {
 
     @FXML
@@ -42,8 +45,7 @@ public class FXMLMarcaCadastroController implements Initializable {
         if (this.marcaDao.isValid(marca)) {
             this.marcaDao.save(marca);
             this.stage.close();
-        }
-        else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText("Erro ao salvar registro");

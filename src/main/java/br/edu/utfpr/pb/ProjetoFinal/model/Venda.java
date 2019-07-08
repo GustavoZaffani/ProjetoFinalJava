@@ -48,6 +48,7 @@ public class Venda implements Serializable, AbstractModel {
     private Double valorTotal;
 
     public Double getValorTotal() {
-        return null;
+        return vendaProdutos.stream().mapToDouble(vp -> vp.getValor() *
+                vp.getQuantidade()).sum();
     }
 }

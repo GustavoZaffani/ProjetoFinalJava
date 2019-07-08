@@ -1,8 +1,6 @@
 package br.edu.utfpr.pb.ProjetoFinal.controller;
 
-import br.edu.utfpr.pb.ProjetoFinal.dao.CategoriaDao;
 import br.edu.utfpr.pb.ProjetoFinal.dao.ClienteDao;
-import br.edu.utfpr.pb.ProjetoFinal.model.Categoria;
 import br.edu.utfpr.pb.ProjetoFinal.model.Cliente;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +19,9 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @author Gustavo Zaffani
+ */
 public class FXMLClienteListaController implements Initializable {
 
     @FXML

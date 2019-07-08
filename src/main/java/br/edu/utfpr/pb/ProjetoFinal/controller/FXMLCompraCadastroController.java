@@ -1,8 +1,8 @@
 package br.edu.utfpr.pb.ProjetoFinal.controller;
 
-import br.edu.utfpr.pb.ProjetoFinal.dao.ClienteDao;
+import br.edu.utfpr.pb.ProjetoFinal.dao.CompraDao;
+import br.edu.utfpr.pb.ProjetoFinal.dao.FornecedorDao;
 import br.edu.utfpr.pb.ProjetoFinal.dao.ProdutoDao;
-import br.edu.utfpr.pb.ProjetoFinal.dao.VendaDao;
 import br.edu.utfpr.pb.ProjetoFinal.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,16 +26,16 @@ import java.util.ResourceBundle;
 /**
  * @author Gustavo Zaffani
  */
-public class FXMLVendaCadastroController implements Initializable {
+public class FXMLCompraCadastroController implements Initializable {
 
     @FXML
     private TextField textId;
     @FXML
     private TextField textDescricao;
     @FXML
-    private DatePicker datePickerVenda;
+    private DatePicker datePickerCompra;
     @FXML
-    private ComboBox comboCliente;
+    private ComboBox comboFornecedor;
     @FXML
     private ComboBox comboProduto;
     @FXML
@@ -45,31 +45,31 @@ public class FXMLVendaCadastroController implements Initializable {
     @FXML
     private TextField textVlrTotal;
     @FXML
-    private TableView<VendaProduto> tableData;
+    private TableView<CompraProduto> tableData;
     @FXML
-    private TableColumn<VendaProduto, Produto> columnDescricao;
+    private TableColumn<CompraProduto, Produto> columnDescricao;
     @FXML
-    private TableColumn<VendaProduto, Integer> columnQtde;
+    private TableColumn<CompraProduto, Integer> columnQtde;
     @FXML
-    private TableColumn<VendaProduto, Double> columnVlrUnit;
+    private TableColumn<CompraProduto, Double> columnVlrUnit;
     @FXML
-    private TableColumn<VendaProduto, Double> columnVlrTotal;
+    private TableColumn<CompraProduto, Double> columnVlrTotal;
 
-    private Venda venda;
-    private VendaDao vendaDao;
+    private Compra compra;
+    private CompraDao compraDao;
     private ProdutoDao produtoDao;
-    private ClienteDao clienteDao;
+    private FornecedorDao fornecedorDao;
     private Stage dialogStage;
-    private List<VendaProduto> vendaProdutoList;
-    private ObservableList<VendaProduto> list = FXCollections.observableArrayList();
+    private List<CompraProduto> compraProdutoList;
+    private ObservableList<CompraProduto> list = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.vendaDao = new VendaDao();
+        this.compraDao = new CompraDao();
         this.produtoDao = new ProdutoDao();
-        this.clienteDao = new ClienteDao();
-        this.venda = new Venda();
-        this.vendaProdutoList = new ArrayList<VendaProduto>();
+        this.fornecedorDao = new FornecedorDao();
+        this.compra = new Compra();
+        this.compraProdutoList = new ArrayList<CompraProduto>();
 
         ObservableList<Produto> produtos =
                 FXCollections.observableArrayList(
@@ -77,16 +77,16 @@ public class FXMLVendaCadastroController implements Initializable {
                 );
         this.comboProduto.setItems(produtos);
 
-        ObservableList<Cliente> clientes =
+        ObservableList<Fornecedor> fornecedor =
                 FXCollections.observableArrayList(
-                        this.clienteDao.findAll()
+                        this.fornecedorDao.findAll()
                 );
-        this.comboCliente.setItems(clientes);
+        this.comboFornecedor.setItems(fornecedor);
 
         this.comboProduto.setOnAction(event -> {
             this.textPreco.setText(
                     ((Produto) this.comboProduto.getSelectionModel()
-                            .getSelectedItem()).getPrecoVenda().toString()
+                            .getSelectedItem()).getPrecoCusto().toString()
             );
         });
 
@@ -100,18 +100,18 @@ public class FXMLVendaCadastroController implements Initializable {
     private void setDefaultValues() {
         this.textPreco.setText("0.00");
         this.textVlrTotal.setText("0.00");
-        this.datePickerVenda.setValue(LocalDate.now());
+        this.datePickerCompra.setValue(LocalDate.now());
     }
 
-    public void setVenda(Venda venda) {
-        this.venda = venda;
-        if (venda.getId() != null) {
-            this.textId.setText(venda.getId().toString());
-            this.textDescricao.setText(venda.getDescricao());
-            this.datePickerVenda.setValue(venda.getDataVenda());
-            this.comboCliente.setValue(venda.getCliente());
-            this.textVlrTotal.setText(venda.getValorTotal().toString());
-            this.vendaProdutoList = venda.getVendaProdutos();
+    public void setCompra(Compra compra) {
+        this.compra = compra;
+        if (compra.getId() != null) {
+            this.textId.setText(compra.getId().toString());
+            this.textDescricao.setText(compra.getDescricao());
+            this.datePickerCompra.setValue(compra.getDataCompra());
+            this.comboFornecedor.setValue(compra.getFornecedor());
+            this.textVlrTotal.setText(compra.getValorTotal().toString());
+            this.compraProdutoList = compra.getCompraProdutos();
         }
         loadData();
     }
@@ -120,15 +120,15 @@ public class FXMLVendaCadastroController implements Initializable {
     private void inserirProduto() {
         if (this.comboProduto.getSelectionModel().getSelectedItem() != null
                 && this.textQtde != null) {
-            VendaProduto vendaProduto = new VendaProduto();
-            vendaProduto.setProduto((Produto) this.comboProduto.getSelectionModel().getSelectedItem());
-            vendaProduto.setQuantidade(new Integer(this.textQtde.getText()));
-            vendaProduto.setValor(((Produto) this.comboProduto.getSelectionModel().getSelectedItem()).getPrecoVenda());
-            vendaProduto.setVenda(this.venda);
-            this.vendaProdutoList.add(vendaProduto);
+            CompraProduto compraProduto = new CompraProduto();
+            compraProduto.setProduto((Produto) this.comboProduto.getSelectionModel().getSelectedItem());
+            compraProduto.setQtde(new Integer(this.textQtde.getText()));
+            compraProduto.setValor(((Produto) this.comboProduto.getSelectionModel().getSelectedItem()).getPrecoCusto());
+            compraProduto.setCompra(this.compra);
+            this.compraProdutoList.add(compraProduto);
         }
-        this.venda.setVendaProdutos(this.vendaProdutoList);
-        this.textVlrTotal.setText(venda.getValorTotal().toString());
+        this.compra.setCompraProdutos(this.compraProdutoList);
+        this.textVlrTotal.setText(compra.getValorTotal().toString());
         loadData();
     }
 
@@ -140,7 +140,7 @@ public class FXMLVendaCadastroController implements Initializable {
                 new PropertyValueFactory<>("valor")
         );
         this.columnQtde.setCellValueFactory(
-                new PropertyValueFactory<>("quantidade")
+                new PropertyValueFactory<>("qtde")
         );
         this.columnVlrTotal.setCellValueFactory(
                 new PropertyValueFactory<>("vlrTotal")
@@ -149,7 +149,7 @@ public class FXMLVendaCadastroController implements Initializable {
 
     private void loadData() {
         this.list.clear();
-        this.list.addAll(this.vendaProdutoList);
+        this.list.addAll(this.compraProdutoList);
         tableData.setItems(list);
     }
 
@@ -164,30 +164,30 @@ public class FXMLVendaCadastroController implements Initializable {
 
     @FXML
     private void save(ActionEvent event) {
-        venda.setDescricao(textDescricao.getText());
-        venda.setDataVenda(datePickerVenda.getValue());
-        venda.setCliente((Cliente) comboCliente.getSelectionModel().getSelectedItem());
-        venda.setVendaProdutos(vendaProdutoList);
-        this.openPagamento(new ContaReceber(), event);
-        if (this.vendaDao.isValid(venda)) {
-            this.vendaDao.save(venda);
+        compra.setDescricao(textDescricao.getText());
+        compra.setDataCompra(datePickerCompra.getValue());
+        compra.setFornecedor((Fornecedor) comboFornecedor.getSelectionModel().getSelectedItem());
+        compra.setCompraProdutos(compraProdutoList);
+        this.openPagamento(new ContaPagar(), event);
+        if (this.compraDao.isValid(compra)) {
+            this.compraDao.save(compra);
             this.dialogStage.close();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText("Erro ao salvar registro");
-            alert.setContentText(this.vendaDao.getErrors(venda));
+            alert.setContentText(this.compraDao.getErrors(compra));
             alert.showAndWait();
         }
     }
 
-    private void openPagamento(ContaReceber contaReceber,
+    private void openPagamento(ContaPagar contaPagar,
                                ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(
                     this.getClass()
-                            .getResource("/fxml/FXMLContaReceberCadastro.fxml"));
+                            .getResource("/fxml/FXMLContaPagarCadastro.fxml"));
             AnchorPane pane = (AnchorPane) loader.load();
 
             Stage dialogStage = new Stage();
@@ -196,11 +196,10 @@ public class FXMLVendaCadastroController implements Initializable {
 
             Scene scene = new Scene(pane);
             dialogStage.setScene(scene);
-
-            FXMLContaReceberCadastroController controller =
+            FXMLContaPagarCadastroController controller =
                     loader.getController();
-            contaReceber.setVenda(this.venda);
-            controller.setContaReceber(contaReceber);
+            contaPagar.setCompra(this.compra);
+            controller.setContaPagar(contaPagar);
             controller.setDialogStage(dialogStage);
             dialogStage.showAndWait();
 
@@ -214,5 +213,7 @@ public class FXMLVendaCadastroController implements Initializable {
                     + "a operação novamente!");
             alert.showAndWait();
         }
+        loadData();
     }
+
 }

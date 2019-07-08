@@ -3,29 +3,20 @@ package br.edu.utfpr.pb.ProjetoFinal.controller;
 import br.edu.utfpr.pb.ProjetoFinal.dao.CategoriaDao;
 import br.edu.utfpr.pb.ProjetoFinal.dao.MarcaDao;
 import br.edu.utfpr.pb.ProjetoFinal.dao.ProdutoDao;
-import br.edu.utfpr.pb.ProjetoFinal.dao.UsuarioDao;
-import br.edu.utfpr.pb.ProjetoFinal.enumeration.ETipoPagamento;
 import br.edu.utfpr.pb.ProjetoFinal.model.Categoria;
 import br.edu.utfpr.pb.ProjetoFinal.model.Marca;
 import br.edu.utfpr.pb.ProjetoFinal.model.Produto;
-import br.edu.utfpr.pb.ProjetoFinal.model.Usuario;
-import br.edu.utfpr.pb.ProjetoFinal.util.CriptografiaUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.stage.FileChooser;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.math.BigDecimal;
 import java.net.URL;
-import java.nio.file.Files;
 import java.util.ResourceBundle;
 
 /**
@@ -63,13 +54,13 @@ public class FXMLProdutoCadastroController implements Initializable {
 
         ObservableList<Marca> marcas =
                 FXCollections.observableArrayList(
-                    this.marcaDao.findAll()
+                        this.marcaDao.findAll()
                 );
         this.comboMarca.setItems(marcas);
 
         ObservableList<Categoria> categorias =
                 FXCollections.observableArrayList(
-                    this.categoriaDao.findAll()
+                        this.categoriaDao.findAll()
                 );
         this.comboCategoria.setItems(categorias);
     }
@@ -99,8 +90,8 @@ public class FXMLProdutoCadastroController implements Initializable {
     @FXML
     private void save() {
         produto.setNome(textNome.getText());
-        produto.setPrecoCusto(new BigDecimal(textPrecoCusto.getText()));
-        produto.setPrecoVenda(new BigDecimal(textPrecoVenda.getText()));
+        produto.setPrecoCusto(Double.valueOf(textPrecoCusto.getText()));
+        produto.setPrecoVenda(Double.valueOf(textPrecoVenda.getText()));
         produto.setObservacao(textAreaObservacao.getText());
         produto.setMarca((Marca) comboMarca.getSelectionModel().getSelectedItem());
         produto.setCategoria((Categoria) comboCategoria.getSelectionModel().getSelectedItem());

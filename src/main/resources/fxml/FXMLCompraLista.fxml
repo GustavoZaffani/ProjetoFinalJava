@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="413.0" prefWidth="638.0" stylesheets="@../styles/bootstrap.css" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.utfpr.pb.ProjetoFinal.controller.FXMLContaReceberListaController">
+<VBox alignment="CENTER" prefHeight="413.0" prefWidth="638.0" stylesheets="@../styles/bootstrap.css" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.utfpr.pb.ProjetoFinal.controller.FXMLCompraListaController">
     <children>
         <HBox alignment="CENTER_LEFT" prefHeight="68.0" prefWidth="370.0" VBox.vgrow="NEVER">
             <children>
@@ -28,9 +28,8 @@
             <columns>
                 <TableColumn fx:id="columnId" maxWidth="80.0" minWidth="50.0" text="Código" />
                 <TableColumn fx:id="columnDescricao" maxWidth="150.0" minWidth="200.0" prefWidth="200.0" text="Nome" />
-            <TableColumn fx:id="columnValor" maxWidth="100.0" prefWidth="100.0" text="Valor" />
-            <TableColumn fx:id="columnDtConta" prefWidth="100.0" text="Data da Conta" />
-            <TableColumn fx:id="columnDtVenc" prefWidth="144.0" text="Data do Vencimento" />
+                <TableColumn fx:id="columnValorTotal" maxWidth="100.0" minWidth="150.0" prefWidth="150.0" text="Valor" />
+                <TableColumn fx:id="columnDtCompra" minWidth="150.0" prefWidth="150.0" text="Data da Compra" />
             </columns>
         </TableView>
     </children>

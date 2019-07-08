@@ -1,14 +1,9 @@
 package br.edu.utfpr.pb.ProjetoFinal.controller;
 
-import br.edu.utfpr.pb.ProjetoFinal.dao.CategoriaDao;
 import br.edu.utfpr.pb.ProjetoFinal.dao.ContaReceberDao;
-import br.edu.utfpr.pb.ProjetoFinal.dao.MarcaDao;
-import br.edu.utfpr.pb.ProjetoFinal.dao.ProdutoDao;
 import br.edu.utfpr.pb.ProjetoFinal.enumeration.ETipoPagamento;
-import br.edu.utfpr.pb.ProjetoFinal.model.Categoria;
 import br.edu.utfpr.pb.ProjetoFinal.model.ContaReceber;
-import br.edu.utfpr.pb.ProjetoFinal.model.Marca;
-import br.edu.utfpr.pb.ProjetoFinal.model.Produto;
+import br.edu.utfpr.pb.ProjetoFinal.model.Venda;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,6 +14,8 @@ import javafx.stage.Stage;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -44,10 +41,13 @@ public class FXMLContaReceberCadastroController implements Initializable {
     private TextField textNroParcelas;
     @FXML
     private TextField textValorParcela;
+    @FXML
+    private TextField textVenda;
 
     private ContaReceber contaReceber;
     private ContaReceberDao contaReceberDao;
     private Stage dialogStage;
+    private Venda venda;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -55,9 +55,9 @@ public class FXMLContaReceberCadastroController implements Initializable {
         this.contaReceber = new ContaReceber();
 
         ObservableList<ETipoPagamento> tiposPagamento =
-            FXCollections.observableArrayList(
-                ETipoPagamento.A, ETipoPagamento.P
-            );
+                FXCollections.observableArrayList(
+                        ETipoPagamento.A, ETipoPagamento.P
+                );
 
         this.comboTipoPag.setOnAction(event -> {
             if (this.comboTipoPag.getValue().equals(ETipoPagamento.A)) {
@@ -79,6 +79,12 @@ public class FXMLContaReceberCadastroController implements Initializable {
     }
 
     public void setContaReceber(ContaReceber contaReceber) {
+        if (contaReceber.getVenda() != null) {
+            this.venda = contaReceber.getVenda();
+            this.textValor.setText(this.venda.getValorTotal().toString());
+            this.textValor.setEditable(false);
+            this.textVenda.setText(this.venda.getDescricao());
+        }
         this.contaReceber = contaReceber;
         if (contaReceber.getId() != null) {
             this.textId.setText(contaReceber.getId().toString());
@@ -109,20 +115,29 @@ public class FXMLContaReceberCadastroController implements Initializable {
         contaReceber.setDataVencimento(datePickerVencimento.getValue());
         contaReceber.setObservacao(textAreaObservacao.getText());
         contaReceber.setValorConta(new BigDecimal(textValor.getText()));
-        contaReceber.setTipoPagamento((ETipoPagamento)comboTipoPag.getSelectionModel().getSelectedItem());
+        contaReceber.setTipoPagamento((ETipoPagamento) comboTipoPag.getSelectionModel().getSelectedItem());
         contaReceber.setValorParcela(new BigDecimal(textValorParcela.getText()));
         contaReceber.setNroParcelas(new Integer(textNroParcelas.getText()));
 
-        if (this.contaReceberDao.isValid(contaReceber)) {
-            this.contaReceberDao.save(contaReceber);
+        if (this.venda != null) {
+            List<ContaReceber> contaReceberList = new ArrayList<>();
+            contaReceberList.add(this.contaReceber);
+            this.venda.setContasAReceber(contaReceberList);
             this.dialogStage.close();
         } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro");
-            alert.setHeaderText("Erro ao salvar registro");
-            alert.setContentText(this.contaReceberDao.getErrors(contaReceber));
-            alert.showAndWait();
+            if (this.contaReceberDao.isValid(contaReceber)) {
+                this.contaReceberDao.save(contaReceber);
+                this.dialogStage.close();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setHeaderText("Erro ao salvar registro");
+                alert.setContentText(this.contaReceberDao.getErrors(contaReceber));
+                alert.showAndWait();
+            }
         }
+
+
     }
 
 

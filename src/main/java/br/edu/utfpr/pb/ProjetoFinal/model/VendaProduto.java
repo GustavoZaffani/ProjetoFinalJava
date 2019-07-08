@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-// TODO necessário realizar as alterações
 @Entity
 @Data
 @Table(name = "venda_produto")
@@ -22,7 +21,7 @@ public class VendaProduto implements Serializable, AbstractModel {
     private int quantidade;
 
     @Column(nullable = false)
-    private BigDecimal valor;
+    private Double valor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "produto_id", referencedColumnName = "id", nullable = false)
@@ -32,8 +31,10 @@ public class VendaProduto implements Serializable, AbstractModel {
     @JoinColumn(name = "venda_id", referencedColumnName = "id")
     private Venda venda;
 
-    @Override
-    public String toString() {
-        return "VendaProduto{" + "id=" + id + ", quantidade=" + quantidade + ", valor=" + valor + ", produto=" + produto + ", venda=" + venda + '}';
+    @Transient
+    private Double vlrTotal;
+
+    public Double getVlrTotal() {
+        return quantidade * valor;
     }
 }

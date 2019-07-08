@@ -1,7 +1,7 @@
 package br.edu.utfpr.pb.ProjetoFinal.controller;
 
-import br.edu.utfpr.pb.ProjetoFinal.dao.UsuarioDao;
-import br.edu.utfpr.pb.ProjetoFinal.model.Usuario;
+import br.edu.utfpr.pb.ProjetoFinal.dao.FornecedorDao;
+import br.edu.utfpr.pb.ProjetoFinal.model.Fornecedor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,23 +22,24 @@ import java.util.ResourceBundle;
 /**
  * @author Gustavo Zaffani
  */
-public class FXMLUsuarioListaController implements Initializable {
+public class FXMLFornecedorListaController implements Initializable {
 
     @FXML
-    private TableView<Usuario> tableData;
+    private TableView<Fornecedor> tableData;
     @FXML
-    private TableColumn<Usuario, Long> columnId;
+    private TableColumn<Fornecedor, Long> columnId;
     @FXML
-    private TableColumn<Usuario, String> columnNome;
+    private TableColumn<Fornecedor, String> columnRazaoSocial;
+    @FXML
+    private TableColumn<Fornecedor, String> columnNomeFantasia;
     @FXML
     private Button buttonEdit;
-    private UsuarioDao usuarioDao;
-    private ObservableList<Usuario> list =
-            FXCollections.observableArrayList();
+    private FornecedorDao fornecedorDao;
+    private ObservableList<Fornecedor> list = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.usuarioDao = new UsuarioDao();
+        this.fornecedorDao = new FornecedorDao();
         this.tableData.getSelectionModel()
                 .setSelectionMode(
                         SelectionMode.SINGLE);
@@ -50,29 +51,31 @@ public class FXMLUsuarioListaController implements Initializable {
         this.columnId.setCellValueFactory(
                 new PropertyValueFactory<>("id")
         );
-        this.columnNome.setCellValueFactory(
-                new PropertyValueFactory<>("nome")
+        this.columnRazaoSocial.setCellValueFactory(
+                new PropertyValueFactory<>("razaoSocial")
         );
-
+        this.columnNomeFantasia.setCellValueFactory(
+                new PropertyValueFactory<>("nomeFantasia")
+        );
     }
 
     private void loadData() {
         this.list.clear();
-        this.list.addAll(this.usuarioDao.findAll());
+        this.list.addAll(this.fornecedorDao.findAll());
         tableData.setItems(list);
     }
 
-    private void openForm(Usuario usuario,
+    private void openForm(Fornecedor fornecedor,
                           ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(
                     this.getClass()
-                            .getResource("/fxml/FXMLUsuarioCadastro.fxml"));
+                            .getResource("/fxml/FXMLFornecedorCadastro.fxml"));
             AnchorPane pane = (AnchorPane) loader.load();
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Cadastro de Usuário");
+            dialogStage.setTitle("Cadastro de Fornecedor");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(
                     ((Node) buttonEdit)
@@ -80,9 +83,9 @@ public class FXMLUsuarioListaController implements Initializable {
             Scene scene = new Scene(pane);
             dialogStage.setScene(scene);
 
-            FXMLUsuarioCadastroController controller =
+            FXMLFornecedorCadastroController controller =
                     loader.getController();
-            controller.setUsuario(usuario);
+            controller.setFornecedor(fornecedor);
             controller.setDialogStage(dialogStage);
             dialogStage.showAndWait();
 
@@ -101,15 +104,15 @@ public class FXMLUsuarioListaController implements Initializable {
 
     @FXML
     private void edit(ActionEvent event) {
-        Usuario usuario =
+        Fornecedor fornecedor =
                 tableData.getSelectionModel()
                         .getSelectedItem();
-        this.openForm(usuario, event);
+        this.openForm(fornecedor, event);
     }
 
     @FXML
     private void newRecord(ActionEvent event) {
-        this.openForm(new Usuario(), event);
+        this.openForm(new Fornecedor(), event);
     }
 
     @FXML
@@ -117,12 +120,13 @@ public class FXMLUsuarioListaController implements Initializable {
         if (tableData.getSelectionModel()
                 .getSelectedIndex() >= 0) {
             try {
-                Usuario usuario = tableData
+                Fornecedor fornecedor = tableData
                         .getSelectionModel().getSelectedItem();
-                usuarioDao.delete(usuario.getId());
+                fornecedorDao.delete(fornecedor.getId());
                 tableData.getItems().remove(
                         tableData.getSelectionModel()
                                 .getSelectedIndex());
+
             } catch (Exception e) {
                 e.printStackTrace();
                 Alert alert = new Alert(Alert.AlertType.ERROR);
