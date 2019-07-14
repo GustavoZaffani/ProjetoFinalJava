@@ -99,7 +99,8 @@ public class FXMLContaPagarCadastroController implements Initializable {
         contaPagar.setValorConta(new BigDecimal(textValor.getText()));
         contaPagar.setTipoPagamento((ETipoPagamento) comboTipoPag.getSelectionModel().getSelectedItem());
 
-        if (this.compra != null) {
+        if (this.compra != null &&
+                this.contaPagarDao.isValid(contaPagar)) {
             this.compra.setContaPagar(this.contaPagar);
             this.dialogStage.close();
         } else {

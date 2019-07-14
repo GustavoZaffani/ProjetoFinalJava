@@ -2,6 +2,7 @@ package br.edu.utfpr.pb.ProjetoFinal.controller;
 
 import br.edu.utfpr.pb.ProjetoFinal.dao.CidadeDao;
 import br.edu.utfpr.pb.ProjetoFinal.dao.ClienteDao;
+import br.edu.utfpr.pb.ProjetoFinal.dao.ContatoDao;
 import br.edu.utfpr.pb.ProjetoFinal.dao.EstadoDao;
 import br.edu.utfpr.pb.ProjetoFinal.enumeration.EOperadora;
 import br.edu.utfpr.pb.ProjetoFinal.enumeration.ETipoContato;
@@ -138,15 +139,53 @@ public class FXMLClienteCadastroController implements Initializable {
     }
 
     @FXML
+    private void removeContato() {
+        if (tableData.getSelectionModel()
+            .getSelectedIndex() >= 0) {
+            this.contatos.remove(
+                    tableData.getSelectionModel().getSelectedItem()
+            );
+            tableData.getItems().remove(
+                    tableData.getSelectionModel().getSelectedIndex()
+            );
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Nenhum registro "
+                    + "selecionado");
+            alert.setContentText("Por favor, "
+                    + "selecione um registro "
+                    + "na tabela!");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
     private void insertContato() {
+
         if (this.comboTipo.getValue() != null
-                && this.textTelefone.getText() != null) {
-            Contato contato = new Contato();
-            contato.setCliente(this.cliente);
-            contato.setTelefone(this.textTelefone.getText());
-            contato.setOperadora((EOperadora) this.comboOperadora.getSelectionModel().getSelectedItem());
-            contato.setTipoContato((ETipoContato) this.comboTipo.getSelectionModel().getSelectedItem());
-            contatos.add(contato);
+                && this.comboOperadora.getValue() != null) {
+            if (this.textTelefone.getText() != "" &&
+                    ValidatorUtil.isPhoneValid(this.textTelefone.getText())) {
+                Contato contato = new Contato();
+                contato.setCliente(this.cliente);
+                contato.setTelefone(this.textTelefone.getText());
+                contato.setOperadora((EOperadora) this.comboOperadora.getSelectionModel().getSelectedItem());
+                contato.setTipoContato((ETipoContato) this.comboTipo.getSelectionModel().getSelectedItem());
+                contatos.add(contato);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setHeaderText("Erro ao inserir um telefone");
+                alert.setContentText("O número digitado não é válido.");
+                alert.showAndWait();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Erro ao inserir um telefone");
+            alert.setContentText("É necessário informar o tipo de contato e a operadora.");
+            alert.showAndWait();
         }
         loadData();
     }

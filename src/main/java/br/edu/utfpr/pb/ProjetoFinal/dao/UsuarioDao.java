@@ -11,15 +11,15 @@ public class UsuarioDao extends GenericDao<Usuario, Long> {
         super(Usuario.class);
     }
 
-    public Usuario findByEmailNamedQuery(String email,
+    public Usuario findByEmailNamedQuery(String usuario,
                                                  String senha){
         Query query = em.createNamedQuery(
                 Usuario.FIND_BY_EMAIL);
-        query.setParameter("email", email);
-        Usuario usuario = (Usuario) query.getSingleResult();
+        query.setParameter("usuario", usuario);
+        Usuario usuarioLogin = (Usuario) query.getSingleResult();
 
-        if (CriptografiaUtil.descriptografa(usuario.getSenha()).equals(senha)) {
-            return usuario;
+        if (CriptografiaUtil.descriptografa(usuarioLogin.getSenha()).equals(senha)) {
+            return usuarioLogin;
         }
         return null;
     }

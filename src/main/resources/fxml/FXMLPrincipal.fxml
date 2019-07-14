@@ -24,6 +24,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#loadUsuario" text="Usuário" />
                         <MenuItem mnemonicParsing="false" onAction="#loadMarca" text="Marca" />
                         <MenuItem mnemonicParsing="false" onAction="#loadCliente" text="Cliente" />
+                        <MenuItem mnemonicParsing="false" onAction="#loadFornecedor" text="Fornecedor" />
                             </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Financeiro">
@@ -34,7 +35,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#loadCompras" text="Compras" />
                      </items>
                         </Menu>
-                        <Menu mnemonicParsing="false" text="Relatórios">
+                        <Menu fx:id="menuRelatorios" mnemonicParsing="false" text="Relatórios">
                             <items>
                                 <MenuItem mnemonicParsing="false" text="About" />
                             </items>
@@ -74,9 +75,14 @@
                                  </children></AnchorPane>
                                     </content>
                                 </TitledPane>
-                                <TitledPane animated="false" text="Relatórios">
+                                <TitledPane fx:id="paneRelatorios" animated="false" text="Relatórios">
                                     <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Button layoutX="41.0" layoutY="14.0" mnemonicParsing="false" onAction="#showReportProduto" text="Produtos" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <Button layoutX="47.0" layoutY="61.0" mnemonicParsing="false" onAction="#showReportCliente" text="Clientes" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0" />
+                                    <Button layoutX="40.0" layoutY="124.0" mnemonicParsing="false" onAction="#showReportFornecedor" text="Fornecedores" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
+                                 </children></AnchorPane>
                                     </content>
                                 </TitledPane>
                             </panes>

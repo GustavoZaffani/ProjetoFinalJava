@@ -62,6 +62,8 @@ public class FXMLLoginController implements Initializable {
                 stage.setResizable(true);
 
                 FXMLPrincipalController controller = loader.getController();
+//                System.out.println("Nome: " + usuario.getNome());
+//                System.out.println("Adm: " + usuario.getIsAdministrador());
                 controller.setUsuarioAutenticado(usuario);
 
                 stage.show();

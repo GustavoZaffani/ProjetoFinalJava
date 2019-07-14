@@ -42,16 +42,15 @@ public class MainSplash extends Application {
 
     @Override
     public void init() {
-        Usuario usuario = new Usuario();
-        usuario.setNome("Gustavo");
-        usuario.setCpf("1234");
-        usuario.setAdministrador(true);
-        usuario.setAtivo(true);
-        usuario.setDataNascimento(LocalDate.of(1999,07,18));
-        usuario.setEmail("admin");
-        usuario.setSenha(CriptografiaUtil.criptografa("admin"));
-        System.out.println("crypt: " + usuario.getSenha());
-        new UsuarioDao().save(usuario);
+//        Usuario usuario = new Usuario();
+//        usuario.setNome("Gustavo");
+//        usuario.setCpf("1234");
+//        usuario.setAdministrador(true);
+//        usuario.setAtivo(true);
+//        usuario.setDataNascimento(LocalDate.of(1999,07,18));
+//        usuario.setUsuario("admin");
+//        usuario.setSenha(CriptografiaUtil.criptografa("admin"));
+//        new UsuarioDao().save(usuario);
         ImageView splash = new ImageView(new Image(
                 getClass().getResource("/images/imgLogo.jpg").toExternalForm()
         ));
@@ -107,10 +106,8 @@ public class MainSplash extends Application {
             scene.getStylesheets().add("/styles/bootstrap.css");
             Stage stage = new Stage();
             stage.centerOnScreen();
-            stage.setTitle("Aula de JavaFX - OO24S");
+            stage.setTitle("Sistema ERP - LZSoftware");
             stage.setScene(scene);
-            //stage.setMaximized(true);
-            //stage.setResizable(true);
 
             Screen screen = Screen.getPrimary();
             Rectangle2D bounds = screen.getBounds();

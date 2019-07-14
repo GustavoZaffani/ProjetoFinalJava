@@ -9,6 +9,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -24,12 +26,15 @@ public class Contato implements AbstractModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "O campo 'Telefone' é de preenchimento obrigatório.")
     @Column(length = 25, nullable = false)
     private String telefone;
 
+    @NotNull(message = "O campo 'Operadora' deve ser selecionado.")
     @Enumerated(EnumType.STRING)
     private EOperadora operadora;
 
+    @NotNull(message = "O campo 'Tipo de Contato' deve ser selecionado.")
     @Convert(converter = TipoContatoConverter.class)
     private ETipoContato tipoContato;
 

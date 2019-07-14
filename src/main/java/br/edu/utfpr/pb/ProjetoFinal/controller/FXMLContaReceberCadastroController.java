@@ -48,11 +48,15 @@ public class FXMLContaReceberCadastroController implements Initializable {
     private ContaReceberDao contaReceberDao;
     private Stage dialogStage;
     private Venda venda;
+    private Double vlrParcela;
+    private List<ContaReceber> contaReceberList = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.contaReceberDao = new ContaReceberDao();
         this.contaReceber = new ContaReceber();
+        this.contaReceberList = new ArrayList<>();
+        this.textNroParcelas.setText("1");
 
         ObservableList<ETipoPagamento> tiposPagamento =
                 FXCollections.observableArrayList(
@@ -69,6 +73,17 @@ public class FXMLContaReceberCadastroController implements Initializable {
         });
         this.comboTipoPag.setItems(tiposPagamento);
         this.setDefaultValues();
+
+        this.textNroParcelas.setOnKeyPressed(event -> {
+            if (!this.textValor.getText().equals("0") &&
+                    !this.textNroParcelas.getText().equals("")) {
+                vlrParcela = Double.valueOf(this.textValor.getText())
+                        / Double.valueOf(this.textNroParcelas.getText());
+                this.textValorParcela.setText(
+                        vlrParcela.toString()
+                );
+            }
+        });
     }
 
     private void setDefaultValues() {
@@ -110,35 +125,49 @@ public class FXMLContaReceberCadastroController implements Initializable {
 
     @FXML
     private void save() {
-        contaReceber.setDescricao(textDescricao.getText());
-        contaReceber.setDataConta(datePickerConta.getValue());
-        contaReceber.setDataVencimento(datePickerVencimento.getValue());
-        contaReceber.setObservacao(textAreaObservacao.getText());
-        contaReceber.setValorConta(new BigDecimal(textValor.getText()));
-        contaReceber.setTipoPagamento((ETipoPagamento) comboTipoPag.getSelectionModel().getSelectedItem());
-        contaReceber.setValorParcela(new BigDecimal(textValorParcela.getText()));
         contaReceber.setNroParcelas(new Integer(textNroParcelas.getText()));
+        if (this.contaReceber.getNroParcelas() != 0) {
+            for (int i = 0; i < this.contaReceber.getNroParcelas(); i++) {
+                contaReceber = new ContaReceber();
+                contaReceber.setDescricao(textDescricao.getText());
+                contaReceber.setDataConta(datePickerConta.getValue());
+                contaReceber.setDataVencimento(datePickerVencimento.getValue().plusMonths(i));
+                contaReceber.setObservacao(textAreaObservacao.getText());
+                contaReceber.setValorConta(new BigDecimal(textValor.getText()));
+                contaReceber.setTipoPagamento((ETipoPagamento) comboTipoPag.getSelectionModel().getSelectedItem());
+                contaReceber.setValorParcela(new BigDecimal(textValorParcela.getText()));
+                contaReceber.setNroParcelas(new Integer(textNroParcelas.getText()));
 
-        if (this.venda != null) {
-            List<ContaReceber> contaReceberList = new ArrayList<>();
-            contaReceberList.add(this.contaReceber);
-            this.venda.setContasAReceber(contaReceberList);
-            this.dialogStage.close();
-        } else {
-            if (this.contaReceberDao.isValid(contaReceber)) {
-                this.contaReceberDao.save(contaReceber);
+                if (this.venda != null) {
+                    contaReceber.setVenda(this.venda);
+                    if (this.contaReceberDao.isValid(contaReceber)) {
+                        contaReceberList.add(this.contaReceber);
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Erro");
+                        alert.setHeaderText("Erro ao gerar pagamento.");
+                        alert.setContentText(this.contaReceberDao.getErrors(contaReceber));
+                        alert.showAndWait();
+                        break;
+                    }
+                } else {
+                    if (this.contaReceberDao.isValid(contaReceber)) {
+                        this.contaReceberDao.save(contaReceber);
+                        this.dialogStage.close();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Erro");
+                        alert.setHeaderText("Erro ao salvar registro");
+                        alert.setContentText(this.contaReceberDao.getErrors(contaReceber));
+                        alert.showAndWait();
+                        break;
+                    }
+                }
+            }
+            if (this.venda != null && this.contaReceberList.size() > 0) {
+                this.venda.setContasAReceber(contaReceberList);
                 this.dialogStage.close();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erro");
-                alert.setHeaderText("Erro ao salvar registro");
-                alert.setContentText(this.contaReceberDao.getErrors(contaReceber));
-                alert.showAndWait();
             }
         }
-
-
     }
-
-
 }

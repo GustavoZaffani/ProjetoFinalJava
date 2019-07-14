@@ -134,10 +134,19 @@ public class FXMLContaPagarListaController implements Initializable {
             try {
                 ContaPagar contaPagar = tableData
                         .getSelectionModel().getSelectedItem();
-                contaPagarDao.delete(contaPagar.getId());
-                tableData.getItems().remove(
-                        tableData.getSelectionModel()
-                                .getSelectedIndex());
+
+                if (contaPagar.getCompra() != null) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erro");
+                    alert.setHeaderText("Não foi possível remover o registro!");
+                    alert.setContentText("Essa conta está vinculada a uma compra!");
+                    alert.showAndWait();
+                } else {
+                    contaPagarDao.delete(contaPagar.getId());
+                    tableData.getItems().remove(
+                            tableData.getSelectionModel()
+                                    .getSelectedIndex());
+                }
             } catch (Exception e) {
                 e.printStackTrace();
                 Alert alert = new Alert(Alert.AlertType.ERROR);

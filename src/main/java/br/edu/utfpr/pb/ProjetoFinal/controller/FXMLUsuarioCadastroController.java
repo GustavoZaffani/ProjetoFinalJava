@@ -3,6 +3,7 @@ package br.edu.utfpr.pb.ProjetoFinal.controller;
 import br.edu.utfpr.pb.ProjetoFinal.dao.UsuarioDao;
 import br.edu.utfpr.pb.ProjetoFinal.model.Usuario;
 import br.edu.utfpr.pb.ProjetoFinal.util.CriptografiaUtil;
+import br.edu.utfpr.pb.ProjetoFinal.util.ValidatorUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,7 +31,7 @@ public class FXMLUsuarioCadastroController implements Initializable {
     @FXML
     private TextField textCpf;
     @FXML
-    private TextField textEmail;
+    private TextField textUsuario;
     @FXML
     private PasswordField textSenha;
     @FXML
@@ -62,7 +63,7 @@ public class FXMLUsuarioCadastroController implements Initializable {
             textId.setText(usuario.getId().toString());
             textNome.setText(usuario.getNome());
             textCpf.setText(usuario.getCpf());
-            textEmail.setText(usuario.getEmail());
+            textUsuario.setText(usuario.getUsuario());
             textSenha.setText(CriptografiaUtil.descriptografa(usuario.getSenha()));
             dateDataNascimento.setValue(usuario.getDataNascimento());
             checkAtivo.setSelected(usuario.getAtivo());
@@ -105,20 +106,26 @@ public class FXMLUsuarioCadastroController implements Initializable {
     private void save() {
         usuario.setNome(textNome.getText());
         usuario.setCpf(textCpf.getText());
-        usuario.setEmail(textEmail.getText());
+        usuario.setUsuario(textUsuario.getText());
         usuario.setSenha(CriptografiaUtil.criptografa(textSenha.getText()));
         usuario.setDataNascimento(dateDataNascimento.getValue());
         usuario.setAtivo(checkAtivo.isSelected());
         usuario.setAdministrador(checkAdm.isSelected());
 
-        if (this.usuarioDao.isValid(usuario)) {
+        if (this.usuarioDao.isValid(usuario) &&
+                ValidatorUtil.isCPF(this.usuario.getCpf())) {
             this.usuarioDao.save(usuario);
             this.dialogStage.close();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText("Erro ao salvar registro");
-            alert.setContentText(this.usuarioDao.getErrors(usuario));
+
+            if (this.usuarioDao.getErrors(usuario).equals("")) {
+                alert.setContentText("O campo 'CPF' deve ser válido!");
+            } else {
+                alert.setContentText(this.usuarioDao.getErrors(usuario));
+            }
             alert.showAndWait();
         }
     }

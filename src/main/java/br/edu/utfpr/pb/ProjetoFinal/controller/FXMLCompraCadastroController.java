@@ -117,6 +117,28 @@ public class FXMLCompraCadastroController implements Initializable {
     }
 
     @FXML
+    private void removerProduto() {
+        if (tableData.getSelectionModel()
+                .getSelectedIndex() >= 0) {
+            this.compraProdutoList.remove(
+                    tableData.getSelectionModel().getSelectedItem()
+            );
+            tableData.getItems().remove(
+                    tableData.getSelectionModel().getSelectedIndex()
+            );
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Nenhum registro "
+                    + "selecionado");
+            alert.setContentText("Por favor, "
+                    + "selecione um registro "
+                    + "na tabela!");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
     private void inserirProduto() {
         if (this.comboProduto.getSelectionModel().getSelectedItem() != null
                 && this.textQtde != null) {
@@ -168,10 +190,12 @@ public class FXMLCompraCadastroController implements Initializable {
         compra.setDataCompra(datePickerCompra.getValue());
         compra.setFornecedor((Fornecedor) comboFornecedor.getSelectionModel().getSelectedItem());
         compra.setCompraProdutos(compraProdutoList);
-        this.openPagamento(new ContaPagar(), event);
         if (this.compraDao.isValid(compra)) {
-            this.compraDao.save(compra);
-            this.dialogStage.close();
+            this.openPagamento(new ContaPagar(), event);
+            if (this.compra.getCompraProdutos().size() >= 0) {
+                this.compraDao.save(compra);
+                this.dialogStage.close();
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");

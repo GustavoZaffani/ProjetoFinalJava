@@ -32,7 +32,9 @@ public class FXMLProdutoListaController implements Initializable {
     @FXML
     private TableColumn<Produto, String> columnNome;
     @FXML
-    private TableColumn<Produto, BigDecimal> columnValor;
+    private TableColumn<Produto, BigDecimal> columnPrecoCusto;
+    @FXML
+    private TableColumn<Produto, BigDecimal> columnPrecoVenda;
     @FXML
     private Button buttonEdit;
     private ProdutoDao produtoDao;
@@ -56,7 +58,10 @@ public class FXMLProdutoListaController implements Initializable {
         this.columnNome.setCellValueFactory(
                 new PropertyValueFactory<>("nome")
         );
-        this.columnValor.setCellValueFactory(
+        this.columnPrecoCusto.setCellValueFactory(
+                new PropertyValueFactory<>("precoCusto")
+        );
+        this.columnPrecoVenda.setCellValueFactory(
                 new PropertyValueFactory<>("precoVenda")
         );
     }

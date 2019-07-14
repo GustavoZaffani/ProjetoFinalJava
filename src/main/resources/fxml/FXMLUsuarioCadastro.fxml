@@ -20,15 +20,15 @@
         <Button layoutX="319.0" layoutY="381.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="97.0" text="Cancelar" />
         <Button layoutX="438.0" layoutY="381.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="89.0" text="Salvar" />
         <Label layoutX="22.0" layoutY="32.0" text="Código" />
-        <Label layoutX="22.0" layoutY="85.0" text="Nome" />
-        <Label layoutX="22.0" layoutY="298.0" text="Data Nascimento" />
-        <Label layoutX="25.0" layoutY="136.0" text="CPF" />
-        <Label layoutX="22.0" layoutY="244.0" text="Senha" />
-        <Label layoutX="22.0" layoutY="192.0" text="Email" />
+        <Label layoutX="22.0" layoutY="85.0" text="Nome *" />
+        <Label layoutX="22.0" layoutY="298.0" text="Data Nascimento *" />
+        <Label layoutX="25.0" layoutY="136.0" text="CPF *" />
+        <Label layoutX="22.0" layoutY="244.0" text="Senha *" />
+        <Label layoutX="22.0" layoutY="192.0" text="Usuário *" />
         <TextField fx:id="textId" editable="false" layoutX="22.0" layoutY="49.0" prefHeight="25.0" prefWidth="223.0" />
         <TextField fx:id="textNome" layoutX="22.0" layoutY="102.0" prefHeight="25.0" prefWidth="223.0" />
         <TextField fx:id="textCpf" layoutX="22.0" layoutY="153.0" prefHeight="25.0" prefWidth="223.0" />
-        <TextField fx:id="textEmail" layoutX="22.0" layoutY="209.0" prefHeight="25.0" prefWidth="223.0" />
+        <TextField fx:id="textUsuario" layoutX="22.0" layoutY="209.0" prefHeight="25.0" prefWidth="223.0" />
         <PasswordField fx:id="textSenha" layoutX="22.0" layoutY="261.0" prefHeight="25.0" prefWidth="223.0" />
         <DatePicker fx:id="dateDataNascimento" layoutX="22.0" layoutY="315.0" prefHeight="25.0" prefWidth="223.0" />
         <CheckBox fx:id="checkAtivo" layoutX="25.0" layoutY="353.0" mnemonicParsing="false" text="Ativo" />

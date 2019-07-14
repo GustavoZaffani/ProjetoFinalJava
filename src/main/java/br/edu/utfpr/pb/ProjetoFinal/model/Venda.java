@@ -6,6 +6,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
@@ -24,16 +26,20 @@ public class Venda implements Serializable, AbstractModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "O campo 'Descrição' é de preenchimento obrigatório!")
     @Column(name = "descricao", length = 60, nullable = false)
     private String descricao;
 
+    @NotNull(message = "O campo 'Data da Venda' é de preenchimento obrigatório!")
     @Column(name = "data_venda", nullable = false)
     private LocalDate dataVenda;
 
+    @NotNull(message = "O campo 'Cliente' deve ser selecionado!")
     @ManyToOne
     @JoinColumn(name = "cliente_id", referencedColumnName = "id")
     private Cliente cliente;
 
+    @NotNull(message = "Deve ser escolhido ao menos 1 produto.")
     @OneToMany(mappedBy = "venda",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)

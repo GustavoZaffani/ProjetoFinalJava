@@ -17,17 +17,17 @@
         <Button layoutX="322.0" layoutY="421.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="100.0" text="Cancelar" />
         <Button layoutX="432.0" layoutY="421.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="100.0" text="Salvar" />
         <Label layoutX="22.0" layoutY="32.0" text="Código" />
-        <Label layoutX="22.0" layoutY="85.0" text="Nome" />
-        <Label layoutX="25.0" layoutY="136.0" text="Preço de Custo" />
-        <Label layoutX="22.0" layoutY="192.0" text="Marca" />
+        <Label layoutX="22.0" layoutY="85.0" text="Nome *" />
+        <Label layoutX="22.0" layoutY="135.0" text="Preço de Custo *" />
+        <Label layoutX="22.0" layoutY="192.0" text="Marca *" />
         <TextField fx:id="textId" editable="false" layoutX="22.0" layoutY="49.0" prefHeight="25.0" prefWidth="510.0" />
         <TextField fx:id="textNome" layoutX="22.0" layoutY="102.0" prefHeight="25.0" prefWidth="510.0" />
         <TextField fx:id="textPrecoCusto" layoutX="22.0" layoutY="153.0" prefHeight="25.0" prefWidth="251.0" />
       <TextField fx:id="textPrecoVenda" layoutX="282.0" layoutY="153.0" prefHeight="25.0" prefWidth="251.0" />
-      <Label layoutX="283.0" layoutY="136.0" text="Preço de Venda" />
+      <Label layoutX="283.0" layoutY="135.0" text="Preço de Venda *" />
       <ComboBox fx:id="comboMarca" layoutX="22.0" layoutY="209.0" prefHeight="25.0" prefWidth="251.0" />
       <ComboBox fx:id="comboCategoria" layoutX="282.0" layoutY="209.0" prefHeight="25.0" prefWidth="251.0" />
-      <Label layoutX="284.0" layoutY="192.0" text="Categoria" />
+      <Label layoutX="284.0" layoutY="192.0" text="Categoria *" />
       <TextArea fx:id="textAreaObservacao" layoutX="22.0" layoutY="264.0" prefHeight="144.0" prefWidth="510.0" />
       <Label layoutX="22.0" layoutY="247.0" text="Observações" />
     </children>

@@ -21,7 +21,7 @@ import java.time.LocalDate;
 @NamedQueries({
         @NamedQuery(name = "Usuario.findByEmail",
                 query = "Select u from Usuario u "
-                        + " where u.email=:email")
+                        + " where u.usuario=:usuario")
 })
 public class Usuario implements AbstractModel, Serializable {
 
@@ -36,12 +36,13 @@ public class Usuario implements AbstractModel, Serializable {
     @Column(name = "nome", length = 100, nullable = false)
     private String nome;
 
-    @NotEmpty(message = "O campo 'cpf' é obrigatório!")
+    @NotEmpty(message = "O campo 'CPF' é obrigatório!")
     @Column(name = "cpf", length = 11, nullable = false)
     private String cpf;
 
-    @Column(name = "email", length = 100, nullable = false)
-    private String email;
+    @NotEmpty(message = "O campo 'Usuário' é de preenchimento obrigatório.")
+    @Column(name = "usuario", length = 100, nullable = false)
+    private String usuario;
 
     @NotEmpty(message = "O campo 'Senha' é de preenchimento obrigatório.")
     @Lob
@@ -88,12 +89,12 @@ public class Usuario implements AbstractModel, Serializable {
         this.cpf = cpf;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public byte[] getSenha() {

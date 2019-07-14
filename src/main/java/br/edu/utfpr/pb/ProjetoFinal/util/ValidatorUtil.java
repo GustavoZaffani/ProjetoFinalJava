@@ -103,4 +103,12 @@ public class ValidatorUtil {
             return (false);
         }
     }
+
+    public static boolean isPhoneValid(String telefone) {
+
+        if (telefone.matches("\\d*") &&
+                (telefone.length() == 8 || telefone.length() == 9)) {
+            return true;
+        } return false;
+    }
 }

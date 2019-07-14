@@ -28,7 +28,8 @@
             <columns>
                 <TableColumn fx:id="columnId" maxWidth="80.0" minWidth="50.0" text="Código" />
                 <TableColumn fx:id="columnNome" maxWidth="-1.0" minWidth="300.0" prefWidth="-1.0" text="Descricão" />
-            <TableColumn fx:id="columnValor" prefWidth="75.0" text="Preço" />
+            <TableColumn fx:id="columnPrecoCusto" maxWidth="150.0" minWidth="100.0" prefWidth="100.0" text="Preço de Custo" />
+            <TableColumn fx:id="columnPrecoVenda" maxWidth="150.0" minWidth="100.0" prefWidth="100.0" text="Preço de Venda" />
             </columns>
         </TableView>
     </children>

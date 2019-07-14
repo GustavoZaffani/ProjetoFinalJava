@@ -134,10 +134,18 @@ public class FXMLContaReceberListaController implements Initializable {
             try {
                 ContaReceber contaReceber = tableData
                         .getSelectionModel().getSelectedItem();
-                contaReceberDao.delete(contaReceber.getId());
-                tableData.getItems().remove(
-                        tableData.getSelectionModel()
-                                .getSelectedIndex());
+                if (contaReceber.getVenda() != null) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erro");
+                    alert.setHeaderText("Não foi possível remover o registro!");
+                    alert.setContentText("Essa conta está vinculada a uma venda!");
+                    alert.showAndWait();
+                } else {
+                    contaReceberDao.delete(contaReceber.getId());
+                    tableData.getItems().remove(
+                            tableData.getSelectionModel()
+                                    .getSelectedIndex());
+                }
             } catch (Exception e) {
                 e.printStackTrace();
                 Alert alert = new Alert(Alert.AlertType.ERROR);

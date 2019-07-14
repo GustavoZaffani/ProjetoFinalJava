@@ -42,6 +42,7 @@ public class Compra implements AbstractModel {
     @JoinColumn(name = "cliente_id", referencedColumnName = "id")
     private Fornecedor fornecedor;
 
+    @NotNull(message = "Deve ser escolhido ao menos 1 produto.")
     @OneToMany(mappedBy = "compra",
             cascade = {CascadeType.ALL, CascadeType.REMOVE})
     private List<CompraProduto> compraProdutos;

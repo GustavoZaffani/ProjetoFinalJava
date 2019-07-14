@@ -51,6 +51,8 @@ public class FXMLProdutoCadastroController implements Initializable {
         this.categoriaDao = new CategoriaDao();
         this.marcaDao = new MarcaDao();
         this.produto = new Produto();
+        this.textPrecoCusto.setText("0.00");
+        this.textPrecoVenda.setText("0.00");
 
         ObservableList<Marca> marcas =
                 FXCollections.observableArrayList(

@@ -11,23 +11,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 
-<AnchorPane id="AnchorPane" prefHeight="532.0" prefWidth="693.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.utfpr.pb.ProjetoFinal.controller.FXMLVendaCadastroController">
+<AnchorPane id="AnchorPane" prefHeight="532.0" prefWidth="713.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.utfpr.pb.ProjetoFinal.controller.FXMLVendaCadastroController">
     <stylesheets>
         <URL value="@/styles/bootstrap.css" />
         <URL value="@/styles/style.css" />
     </stylesheets>
     <children>
-        <Button layoutX="232.0" layoutY="496.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="100.0" text="Cancelar" />
-        <Button layoutX="342.0" layoutY="496.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="100.0" text="Salvar" />
-        <Label layoutX="22.0" layoutY="32.0" text="Código" />
-        <Label layoutX="154.0" layoutY="31.0" text="Descrição" />
-        <Label layoutX="23.0" layoutY="87.0" text="Data da Venda" />
-        <TextField fx:id="textId" editable="false" layoutX="22.0" layoutY="49.0" prefHeight="25.0" prefWidth="122.0" />
-        <TextField fx:id="textDescricao" layoutX="154.0" layoutY="48.0" prefHeight="25.0" prefWidth="510.0" />
-      <DatePicker fx:id="datePickerVenda" layoutX="22.0" layoutY="104.0" prefHeight="25.0" prefWidth="315.0" />
-      <ComboBox fx:id="comboCliente" layoutX="349.0" layoutY="102.0" prefHeight="25.0" prefWidth="315.0" />
-      <Label layoutX="349.0" layoutY="87.0" text="Cliente" />
-      <TableView fx:id="tableData" layoutX="24.0" layoutY="201.0" prefHeight="227.0" prefWidth="643.0">
+        <Button layoutX="252.0" layoutY="495.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="100.0" text="Cancelar" />
+        <Button layoutX="362.0" layoutY="495.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="100.0" text="Salvar" />
+        <Label layoutX="22.0" layoutY="7.0" text="Código" />
+        <Label layoutX="154.0" layoutY="6.0" text="Descrição" />
+        <Label layoutX="23.0" layoutY="62.0" text="Data da Venda" />
+        <TextField fx:id="textId" editable="false" layoutX="22.0" layoutY="27.0" prefHeight="25.0" prefWidth="122.0" />
+        <TextField fx:id="textDescricao" layoutX="154.0" layoutY="26.0" prefHeight="25.0" prefWidth="537.0" />
+      <DatePicker fx:id="datePickerVenda" layoutX="22.0" layoutY="82.0" prefHeight="25.0" prefWidth="329.0" />
+      <ComboBox fx:id="comboCliente" layoutX="361.0" layoutY="81.0" prefHeight="25.0" prefWidth="329.0" />
+      <Label layoutX="361.0" layoutY="61.0" text="Cliente" />
+      <TableView fx:id="tableData" layoutX="24.0" layoutY="201.0" prefHeight="227.0" prefWidth="672.0">
         <columns>
           <TableColumn fx:id="columnDescricao" maxWidth="350.0" minWidth="0.0" prefWidth="350.0" text="Descrição" />
             <TableColumn fx:id="columnQtde" maxWidth="50.0" minWidth="0.0" prefWidth="50.0" text="Qtde" />
@@ -35,16 +35,17 @@
             <TableColumn fx:id="columnVlrTotal" maxWidth="100.0" prefWidth="100.0" text="Vlr Total" />
         </columns>
       </TableView>
-      <ComboBox fx:id="comboProduto" layoutX="23.0" layoutY="159.0" prefHeight="25.0" prefWidth="315.0" />
-      <Label layoutX="23.0" layoutY="144.0" text="Produto" />
-      <Label layoutX="541.0" layoutY="435.0" text="Valor Total" />
-      <TextField fx:id="textVlrTotal" editable="false" layoutX="541.0" layoutY="452.0" prefHeight="25.0" prefWidth="122.0" />
-      <Label layoutX="480.0" layoutY="139.0" text="Preço" />
-      <TextField fx:id="textPreco" layoutX="480.0" layoutY="158.0" prefHeight="25.0" prefWidth="122.0" />
-      <Button layoutX="612.0" layoutY="158.0" mnemonicParsing="false" onAction="#inserirProduto" text="Inserir" />
-      <Label layoutX="348.0" layoutY="142.0" text="Qtde" />
-      <TextField fx:id="textQtde" layoutX="348.0" layoutY="159.0" prefHeight="25.0" prefWidth="122.0" />
-      <Line endX="536.0" layoutX="125.0" layoutY="138.0" opacity="0.34" startX="-100.0" />
-      <Line endX="536.0" layoutX="131.0" layoutY="485.0" opacity="0.34" startX="-100.0" />
+      <ComboBox fx:id="comboProduto" layoutX="23.0" layoutY="159.0" prefHeight="25.0" prefWidth="237.0" />
+      <Label layoutX="23.0" layoutY="139.0" text="Produto" />
+      <Label layoutX="574.0" layoutY="436.0" text="Valor Total" />
+      <TextField fx:id="textVlrTotal" editable="false" layoutX="574.0" layoutY="453.0" prefHeight="25.0" prefWidth="122.0" />
+      <Label layoutX="397.0" layoutY="136.0" text="Preço" />
+      <TextField fx:id="textPreco" layoutX="396.0" layoutY="158.0" prefHeight="25.0" prefWidth="122.0" />
+      <Button layoutX="525.0" layoutY="157.0" mnemonicParsing="false" onAction="#inserirProduto" prefHeight="25.0" prefWidth="79.0" text="Inserir" />
+      <Label layoutX="266.0" layoutY="139.0" text="Qtde" />
+      <TextField fx:id="textQtde" layoutX="265.0" layoutY="159.0" prefHeight="25.0" prefWidth="122.0" />
+      <Line endX="565.0" layoutX="125.0" layoutY="128.0" opacity="0.34" startX="-100.0" />
+      <Line endX="561.0" layoutX="131.0" layoutY="485.0" opacity="0.34" startX="-100.0" />
+      <Button layoutX="614.0" layoutY="157.0" mnemonicParsing="false" onAction="#removerProduto" prefHeight="25.0" prefWidth="79.0" text="Remover" />
     </children>
 </AnchorPane>
