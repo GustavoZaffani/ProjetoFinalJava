@@ -66,7 +66,7 @@ public class FXMLContaPagarCadastroController implements Initializable {
         if (contaPagar.getCompra() != null) {
             this.compra = contaPagar.getCompra();
             this.textCompra.setText(this.compra.getDescricao());
-            this.textValor.setText(this.compra.getValorTotal().toString());
+            this.textValor.setText(this.compra.getVlrTotal().toString());
             this.textValor.setEditable(false);
         }
         this.contaPagar = contaPagar;

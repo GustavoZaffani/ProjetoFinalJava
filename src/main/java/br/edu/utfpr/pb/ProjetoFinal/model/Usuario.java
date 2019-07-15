@@ -45,7 +45,6 @@ public class Usuario implements AbstractModel, Serializable {
     private String usuario;
 
     @NotEmpty(message = "O campo 'Senha' é de preenchimento obrigatório.")
-    @Lob
     @Column(name = "senha", nullable = false)
     private byte[] senha;
 

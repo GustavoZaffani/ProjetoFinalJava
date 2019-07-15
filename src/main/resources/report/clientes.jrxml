@@ -6,42 +6,42 @@
 	<parameter name="TITULO" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT 
-	P.ID,
-	P.NOME,
-	P.PRECO_CUSTO,
-	P.PRECO_VENDA,
-	C.DESCRICAO CATEGORIA,
-	M.DESCRICAO MARCA
-FROM PRODUTO P
-	LEFT JOIN CATEGORIA C
-		ON C.ID = P.CATEGORIA_ID
-	LEFT JOIN MARCA M
-		ON M.ID = P.MARCA_ID
+	C.ID,
+	C.NOME,
+	C.CPF,
+	C.DATA_NASCIMENTO,
+	CI.NOME CIDADE,
+	E.NOME ESTADO
+FROM CLIENTE C
+	LEFT JOIN CIDADE CI
+		ON CI.ID = C.CIDADE_ID
+	LEFT JOIN ESTADO E
+		ON E.ID = C.ESTADO_ID
 ORDER BY 1]]>
 	</queryString>
 	<field name="id" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
 	</field>
 	<field name="nome" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nome"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
 	</field>
-	<field name="preco_custo" class="java.lang.Double">
-		<property name="com.jaspersoft.studio.field.label" value="preco_custo"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
+	<field name="cpf" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cpf"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
 	</field>
-	<field name="preco_venda" class="java.lang.Double">
-		<property name="com.jaspersoft.studio.field.label" value="preco_venda"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
+	<field name="data_nascimento" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="data_nascimento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
 	</field>
-	<field name="categoria" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="categoria"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="categoria"/>
+	<field name="cidade" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cidade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cidade"/>
 	</field>
-	<field name="marca" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="marca"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="marca"/>
+	<field name="estado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="estado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="estado"/>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -60,7 +60,7 @@ ORDER BY 1]]>
 	<columnHeader>
 		<band height="35" splitType="Stretch">
 			<staticText>
-				<reportElement x="37" y="0" width="180" height="30" uuid="f759759e-e8f2-43d4-b352-11d47aafc2be">
+				<reportElement x="37" y="0" width="173" height="30" uuid="f759759e-e8f2-43d4-b352-11d47aafc2be">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="efbc233e-a1ce-4bff-8d30-b040a1b95dae"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -69,13 +69,13 @@ ORDER BY 1]]>
 				<text><![CDATA[Nome]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="224" y="0" width="80" height="30" uuid="737e39b3-43d4-4184-b94d-dfef7adbe444">
+				<reportElement x="216" y="0" width="80" height="30" uuid="737e39b3-43d4-4184-b94d-dfef7adbe444">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ec359ea-6aee-4f69-b8bb-8db1448cd173"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="15" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Custo]]></text>
+				<text><![CDATA[CPF]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="398" y="0" width="80" height="30" uuid="146b2fdd-451a-4d90-8b41-0b69a32b1b4e">
@@ -84,7 +84,7 @@ ORDER BY 1]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="15" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Categoria]]></text>
+				<text><![CDATA[Cidade]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="-18" y="0" width="50" height="30" uuid="429efe9c-1101-48d3-a9a4-e48710abde89">
@@ -96,13 +96,13 @@ ORDER BY 1]]>
 				<text><![CDATA[Cod.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="311" y="0" width="80" height="30" uuid="cebf10c4-8bd2-4ecb-896c-7ee546915a57">
+				<reportElement x="300" y="0" width="91" height="30" uuid="cebf10c4-8bd2-4ecb-896c-7ee546915a57">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ec359ea-6aee-4f69-b8bb-8db1448cd173"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="15" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Venda]]></text>
+				<text><![CDATA[Nascimento]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="486" y="0" width="77" height="30" uuid="5cdc0c7a-5d33-42e1-be0a-fda76276ccf1">
@@ -111,38 +111,20 @@ ORDER BY 1]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="15" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Marca]]></text>
+				<text><![CDATA[Estado]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="32" splitType="Stretch">
+		<band height="37" splitType="Stretch">
 			<textField>
-				<reportElement x="37" y="0" width="180" height="30" uuid="316c2be7-aa9f-40c6-bcbb-71b0a50234a7">
+				<reportElement x="37" y="0" width="173" height="30" uuid="316c2be7-aa9f-40c6-bcbb-71b0a50234a7">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="efbc233e-a1ce-4bff-8d30-b040a1b95dae"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="398" y="0" width="80" height="30" uuid="710c749f-50c2-4619-af1e-55e86078b70b">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9d5cab57-36aa-4aa1-8354-908f0ca469dd"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{categoria}]]></textFieldExpression>
-			</textField>
-			<textField pattern="R$ ###,##0.00">
-				<reportElement x="311" y="0" width="80" height="30" uuid="f04789c8-1b3a-4907-8a58-7c2e6def5e79">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="afc326b0-21df-4998-8e1d-2b80533ec21a"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{preco_venda}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="-18" y="1" width="50" height="30" uuid="74e028b9-a8b7-48b2-b01a-05fab9893729">
@@ -153,23 +135,41 @@ ORDER BY 1]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
-			<textField pattern="R$ ###,##0.00">
-				<reportElement x="224" y="0" width="80" height="30" uuid="657604d0-e91a-4af1-acc1-7d76eb604745">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9f42ac50-0bba-435d-9368-550b1b3fcf72"/>
+			<textField>
+				<reportElement x="216" y="0" width="80" height="30" uuid="3ff51819-b63d-4b33-8ab5-05fc8a457a9c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="11b2da26-8af5-4529-9276-deb29cf977d6"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{preco_custo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="300" y="0" width="91" height="30" uuid="186076bc-1243-4638-a89c-7e489f2c3d0e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abb1d8cb-e2c3-4e1c-ba80-372fcd2b3fc9"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_nascimento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="486" y="0" width="77" height="30" uuid="875134e2-006f-4517-a25c-a585fae75c14">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="28033d99-71f1-4187-a99c-d67945c8a352"/>
+				<reportElement x="398" y="0" width="80" height="30" uuid="198ce4fa-514f-422b-b910-065fda4c21c3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="89590ce4-8a2f-4a24-b0b8-a941d3cef0af"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{marca}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="486" y="0" width="70" height="30" uuid="377f3600-e65c-4e18-9a9d-993d98e7869d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7f1947c5-4280-4aff-8f06-7368cad18e2f"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

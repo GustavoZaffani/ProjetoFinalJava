@@ -39,6 +39,8 @@ public class FXMLContaPagarListaController implements Initializable {
     @FXML
     private TableColumn<ContaPagar, LocalDate> columnDtVenc;
     @FXML
+    private TableColumn<ContaPagar, Boolean> columnPago;
+    @FXML
     private Button buttonEdit;
     private ContaPagarDao contaPagarDao;
     private ObservableList<ContaPagar> list = FXCollections.observableArrayList();
@@ -69,11 +71,19 @@ public class FXMLContaPagarListaController implements Initializable {
         this.columnDtVenc.setCellValueFactory(
                 new PropertyValueFactory<>("dataVencimento")
         );
+        this.columnPago.setCellValueFactory(
+                new PropertyValueFactory<>("infoPago")
+        );
     }
 
     private void loadData() {
         this.list.clear();
         this.list.addAll(this.contaPagarDao.findAll());
+        list.forEach(lista -> {
+            if (lista.getIsPago().equals(Boolean.TRUE)) {
+                lista.setInfoPago("Pago");
+            } else lista.setInfoPago("Pendente");
+        });
         tableData.setItems(list);
     }
 
@@ -125,6 +135,40 @@ public class FXMLContaPagarListaController implements Initializable {
     @FXML
     private void newRecord(ActionEvent event) {
         this.openForm(new ContaPagar(), event);
+    }
+
+    @FXML
+    private void pagar(ActionEvent event) {
+        if (tableData.getSelectionModel()
+                .getSelectedIndex() >= 0) {
+            try {
+                ContaPagar contaPagar = tableData
+                        .getSelectionModel().getSelectedItem();
+
+                contaPagar.setIsPago(Boolean.TRUE);
+                contaPagarDao.save(contaPagar);
+                loadData();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setHeaderText("Ocorreu um erro "
+                        + " ao realizer o pagamento!");
+                alert.setContentText("Por favor, tente realizar "
+                        + "a operação novamente!");
+                alert.showAndWait();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Nenhum registro "
+                    + "selecionado");
+            alert.setContentText("Por favor, "
+                    + "selecione um registro "
+                    + "na tabela!");
+            alert.showAndWait();
+        }
     }
 
     @FXML

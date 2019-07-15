@@ -35,6 +35,7 @@ public class MainSplash extends Application {
     private Label progressText;
     private static final int SPLASH_WIDTH = 850;
     private static final int SPLASH_HEIGHT = 450;
+    private UsuarioDao usuarioDao;
 
     public static void main(String[] args) throws Exception {
         launch(args);
@@ -50,6 +51,7 @@ public class MainSplash extends Application {
 //        usuario.setDataNascimento(LocalDate.of(1999,07,18));
 //        usuario.setUsuario("admin");
 //        usuario.setSenha(CriptografiaUtil.criptografa("admin"));
+//        System.out.println("Crypt: " + usuario.getSenha());
 //        new UsuarioDao().save(usuario);
         ImageView splash = new ImageView(new Image(
                 getClass().getResource("/images/imgLogo.jpg").toExternalForm()
@@ -82,7 +84,8 @@ public class MainSplash extends Application {
             @Override
             protected Void call() throws Exception {
                 updateMessage("Conectando ao banco de dados . . .");
-                UsuarioDao usuarioDao = new UsuarioDao();
+                usuarioDao = new UsuarioDao();
+                createUserDefault();
                 updateMessage("Iniciando o sistema.");
                 return null;
             }
@@ -150,8 +153,21 @@ public class MainSplash extends Application {
         initStage.show();
     }
 
-    public interface InitCompletionHandler {
+    private void createUserDefault() {
+        if (usuarioDao.findAll().size() == 0) {
+            Usuario usuario = new Usuario();
+            usuario.setNome("Gustavo");
+            usuario.setCpf("1234");
+            usuario.setAdministrador(true);
+            usuario.setAtivo(true);
+            usuario.setDataNascimento(LocalDate.of(1999,07,18));
+            usuario.setUsuario("admin");
+            usuario.setSenha(CriptografiaUtil.criptografa("admin"));
+            usuarioDao.save(usuario);
+        }
+    }
 
+    public interface InitCompletionHandler {
         void complete();
     }
 }

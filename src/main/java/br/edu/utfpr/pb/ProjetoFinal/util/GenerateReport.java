@@ -25,17 +25,4 @@ public class GenerateReport {
         viewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
         return viewer;
     }
-
-    public JasperViewer getReport(JRBeanCollectionDataSource jDS,
-                                  Map<String, Object> parameters,
-                                  InputStream file) throws JRException {
-        JasperReport report = (JasperReport) JRLoader.loadObject(file);
-
-        JasperPrint printer = JasperFillManager.fillReport(report, parameters,
-                jDS);
-        JasperViewer viewer = new JasperViewer(printer, false);
-        viewer.setDefaultCloseOperation(JasperViewer.DO_NOTHING_ON_CLOSE);
-        viewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
-        return viewer;
-    }
 }

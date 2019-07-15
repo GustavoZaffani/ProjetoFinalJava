@@ -10,14 +10,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import net.sf.jasperreports.view.JasperViewer;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -36,23 +36,25 @@ public class FXMLPrincipalController implements Initializable {
     private TitledPane paneRelatorios;
     @FXML
     private Menu menuRelatorios;
+    @FXML
+    private Button btnUsuario;
+    @FXML
+    private MenuItem menuUsuario;
 
     private Usuario usuarioAutenticado;
 
     public void setUsuarioAutenticado(Usuario usuario) {
         this.usuarioAutenticado = usuario;
+        if (usuarioAutenticado.getIsAdministrador().equals(Boolean.FALSE)) {
+            this.paneRelatorios.setVisible(false);
+            this.menuRelatorios.setVisible(false);
+            this.menuUsuario.setVisible(false);
+            this.btnUsuario.setVisible(false);
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        System.out.println("Nome: " + usuarioAutenticado.getNome());
-//        System.out.println("Adm: " + usuarioAutenticado.getIsAdministrador());
-//        if (usuarioAutenticado.getIsAdministrador().equals(Boolean.FALSE)) {
-//            this.paneRelatorios.setDisable(true);
-//            this.paneRelatorios.setVisible(false);
-//            this.menuRelatorios.setDisable(true);
-//            this.menuRelatorios.setVisible(false);
-//        }
     }
 
     public void setDataPane(Node node) {
@@ -149,10 +151,7 @@ public class FXMLPrincipalController implements Initializable {
         InputStream file = this.getClass().getResourceAsStream("/report/produtos.jasper");
 
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("TITULO", "Relatório de Produtos - JavaFx");
-        Image imagem = new ImageIcon(
-                this.getClass().getResource("/images/logoUTFPR.jpg")).getImage();
-        parameters.put("LOGO", imagem);
+        parameters.put("TITULO", "Lista de Produtos");
 
         DatabaseConnection conn = DatabaseConnection.getInstance();
         try {
@@ -172,13 +171,10 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     private void showReportCliente(ActionEvent event) {
         GenerateReport generateReport = new GenerateReport();
-        InputStream file = this.getClass().getResourceAsStream("/report/produtos.jasper");
+        InputStream file = this.getClass().getResourceAsStream("/report/clientes.jasper");
 
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("TITULO", "Relatório de Produtos - JavaFx");
-        Image imagem = new ImageIcon(
-                this.getClass().getResource("/images/logoUTFPR.jpg")).getImage();
-        parameters.put("LOGO", imagem);
+        parameters.put("TITULO", "Lista de Clientes");
 
         DatabaseConnection conn = DatabaseConnection.getInstance();
         try {
@@ -198,13 +194,33 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     private void showReportFornecedor(ActionEvent event) {
         GenerateReport generateReport = new GenerateReport();
-        InputStream file = this.getClass().getResourceAsStream("/report/produtos.jasper");
+        InputStream file = this.getClass().getResourceAsStream("/report/fornecedores.jasper");
 
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("TITULO", "Relatório de Produtos - JavaFx");
-        Image imagem = new ImageIcon(
-                this.getClass().getResource("/images/logoUTFPR.jpg")).getImage();
-        parameters.put("LOGO", imagem);
+        parameters.put("TITULO", "Lista de Fornecedores");
+
+        DatabaseConnection conn = DatabaseConnection.getInstance();
+        try {
+            JasperViewer viewer = generateReport.getReport(
+                    conn.getConnection(), parameters, file);
+            viewer.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Falha ao exibir relatório!");
+            alert.setContentText("Falha ao exibir relatório!");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void showReportReceberVencidas(ActionEvent event) {
+        GenerateReport generateReport = new GenerateReport();
+        InputStream file = this.getClass().getResourceAsStream("/report/receberVencidas.jasper");
+
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("TITULO", "Contas a Receber - Vencidas");
 
         DatabaseConnection conn = DatabaseConnection.getInstance();
         try {

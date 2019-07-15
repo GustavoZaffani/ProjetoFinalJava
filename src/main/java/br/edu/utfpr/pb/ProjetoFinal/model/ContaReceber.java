@@ -1,6 +1,7 @@
 package br.edu.utfpr.pb.ProjetoFinal.model;
 
 import br.edu.utfpr.pb.ProjetoFinal.enumeration.ETipoPagamento;
+import br.edu.utfpr.pb.ProjetoFinal.util.BooleanConverter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -60,4 +61,11 @@ public class ContaReceber implements AbstractModel {
 
     @Column(name = "valor_parcela", nullable = false)
     private BigDecimal valorParcela;
+
+    @Convert(converter = BooleanConverter.class)
+    @Column(name = "isPago", columnDefinition = "char(1) default 'F'")
+    private Boolean isPago;
+
+    @Transient
+    private String infoPago;
 }

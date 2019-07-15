@@ -53,6 +53,7 @@ public class FXMLLoginController implements Initializable {
                         this.getClass()
                                 .getResource("/fxml/FXMLPrincipal.fxml"));
                 VBox root = (VBox) loader.load();
+
                 Scene scene = new Scene(root);
                 scene.getStylesheets().add("/styles/style.css");
                 Stage stage = new Stage();
@@ -62,14 +63,14 @@ public class FXMLLoginController implements Initializable {
                 stage.setResizable(true);
 
                 FXMLPrincipalController controller = loader.getController();
-//                System.out.println("Nome: " + usuario.getNome());
-//                System.out.println("Adm: " + usuario.getIsAdministrador());
                 controller.setUsuarioAutenticado(usuario);
 
                 stage.show();
 
                 Stage stageLogin = (Stage) btnEntrar.getScene().getWindow();
                 stageLogin.close();
+            } else {
+                throw new Exception();
             }
         } catch (Exception e) {
             e.printStackTrace();

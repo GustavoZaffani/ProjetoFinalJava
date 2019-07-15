@@ -1,6 +1,7 @@
 package br.edu.utfpr.pb.ProjetoFinal.model;
 
 import br.edu.utfpr.pb.ProjetoFinal.enumeration.ETipoPagamento;
+import br.edu.utfpr.pb.ProjetoFinal.util.BooleanConverter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -54,4 +55,11 @@ public class ContaPagar implements AbstractModel {
     @OneToOne
     @JoinColumn(name = "compra_id", referencedColumnName = "id")
     private Compra compra;
+
+    @Convert(converter = BooleanConverter.class)
+    @Column(name = "isPago", columnDefinition = "char(1) default 'F'")
+    private Boolean isPago;
+
+    @Transient
+    private String infoPago;
 }

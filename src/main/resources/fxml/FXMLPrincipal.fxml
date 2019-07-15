@@ -21,7 +21,7 @@
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#loadCategoria" text="Categoria" />
                         <MenuItem mnemonicParsing="false" onAction="#loadProduto" text="Produto" />
-                        <MenuItem mnemonicParsing="false" onAction="#loadUsuario" text="Usuário" />
+                        <MenuItem fx:id="menuUsuario" mnemonicParsing="false" onAction="#loadUsuario" text="Usuário" />
                         <MenuItem mnemonicParsing="false" onAction="#loadMarca" text="Marca" />
                         <MenuItem mnemonicParsing="false" onAction="#loadCliente" text="Cliente" />
                         <MenuItem mnemonicParsing="false" onAction="#loadFornecedor" text="Fornecedor" />
@@ -56,10 +56,10 @@
                                             <children>
                                                 <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadCategoria" text="Categoria" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                 <Button layoutX="14.0" layoutY="43.0" mnemonicParsing="false" onAction="#loadProduto" prefHeight="25.0" prefWidth="144.0" text="Produto" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0" />
-                                                <Button layoutX="10.0" layoutY="81.0" mnemonicParsing="false" onAction="#loadUsuario" text="Usuário" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
-                                                <Button layoutX="14.0" layoutY="123.0" mnemonicParsing="false" onAction="#loadMarca" text="Marca" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="105.0" />
-                                    <Button layoutX="14.0" layoutY="159.0" mnemonicParsing="false" onAction="#loadCliente" text="Cliente" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0" />
-                                    <Button layoutX="24.0" layoutY="169.0" mnemonicParsing="false" onAction="#loadFornecedor" text="Fornecedor" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="175.0" />
+                                                <Button fx:id="btnUsuario" layoutX="11.0" layoutY="233.0" mnemonicParsing="false" onAction="#loadUsuario" text="Usuário" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="175.0" />
+                                                <Button layoutX="14.0" layoutY="123.0" mnemonicParsing="false" onAction="#loadMarca" text="Marca" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
+                                    <Button layoutX="14.0" layoutY="159.0" mnemonicParsing="false" onAction="#loadCliente" text="Cliente" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="105.0" />
+                                    <Button layoutX="24.0" layoutY="169.0" mnemonicParsing="false" onAction="#loadFornecedor" text="Fornecedor" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0" />
                                             </children>
                                         </AnchorPane>
                                     </content>
@@ -82,6 +82,7 @@
                                     <Button layoutX="41.0" layoutY="14.0" mnemonicParsing="false" onAction="#showReportProduto" text="Produtos" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                     <Button layoutX="47.0" layoutY="61.0" mnemonicParsing="false" onAction="#showReportCliente" text="Clientes" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0" />
                                     <Button layoutX="40.0" layoutY="124.0" mnemonicParsing="false" onAction="#showReportFornecedor" text="Fornecedores" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
+                                    <Button layoutX="50.0" layoutY="134.0" mnemonicParsing="false" onAction="#showReportReceberVencidas" text="A Receber - Vencidas" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="105.0" />
                                  </children></AnchorPane>
                                     </content>
                                 </TitledPane>

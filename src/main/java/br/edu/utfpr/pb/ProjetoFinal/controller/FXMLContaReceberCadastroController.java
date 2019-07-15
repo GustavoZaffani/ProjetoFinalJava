@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.math.BigDecimal;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,7 @@ public class FXMLContaReceberCadastroController implements Initializable {
     private Double vlrParcela;
     private List<ContaReceber> contaReceberList = new ArrayList<>();
 
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.contaReceberDao = new ContaReceberDao();
@@ -79,8 +81,10 @@ public class FXMLContaReceberCadastroController implements Initializable {
                     !this.textNroParcelas.getText().equals("")) {
                 vlrParcela = Double.valueOf(this.textValor.getText())
                         / Double.valueOf(this.textNroParcelas.getText());
+
+                DecimalFormat df = new DecimalFormat("#,###.00");
                 this.textValorParcela.setText(
-                        vlrParcela.toString()
+                    df.format(vlrParcela)
                 );
             }
         });
@@ -134,9 +138,12 @@ public class FXMLContaReceberCadastroController implements Initializable {
                 contaReceber.setDataVencimento(datePickerVencimento.getValue().plusMonths(i));
                 contaReceber.setObservacao(textAreaObservacao.getText());
                 contaReceber.setValorConta(new BigDecimal(textValor.getText()));
-                contaReceber.setTipoPagamento((ETipoPagamento) comboTipoPag.getSelectionModel().getSelectedItem());
-                contaReceber.setValorParcela(new BigDecimal(textValorParcela.getText()));
                 contaReceber.setNroParcelas(new Integer(textNroParcelas.getText()));
+                contaReceber.setTipoPagamento((ETipoPagamento) comboTipoPag.getSelectionModel().getSelectedItem());
+                contaReceber.setValorParcela(new BigDecimal(textValorParcela.getText().replace(",", ".")));
+                if (this.contaReceber.getNroParcelas() == 1) {
+                    contaReceber.setValorParcela(contaReceber.getValorConta());
+                }
 
                 if (this.venda != null) {
                     contaReceber.setVenda(this.venda);

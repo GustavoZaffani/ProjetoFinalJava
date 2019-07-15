@@ -50,10 +50,9 @@ public class Compra implements AbstractModel {
     @Transient
     private Double vlrTotal;
 
-    public Double getValorTotal() {
+    public Double getVlrTotal() {
         return compraProdutos.stream().mapToDouble(vp -> vp.getValor() *
                 vp.getQtde()).sum();
     }
-
 
 }

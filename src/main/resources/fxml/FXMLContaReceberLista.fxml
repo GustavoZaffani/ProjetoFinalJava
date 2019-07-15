@@ -22,15 +22,22 @@
                     </HBox.margin>
                 </Button>
                 <Button mnemonicParsing="false" onAction="#delete" prefHeight="32.0" prefWidth="100.0" styleClass="btn-primary" text="Remover" />
+            <Button mnemonicParsing="false" onAction="#receber" prefHeight="32.0" prefWidth="100.0" styleClass="btn-primary" text="Receber">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
             </children>
         </HBox>
         <TableView fx:id="tableData" prefHeight="345.0" prefWidth="546.0" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
             <columns>
                 <TableColumn fx:id="columnId" maxWidth="80.0" minWidth="50.0" text="Código" />
                 <TableColumn fx:id="columnDescricao" maxWidth="500.0" minWidth="200.0" prefWidth="200.0" text="Nome" />
-            <TableColumn fx:id="columnValor" maxWidth="100.0" prefWidth="100.0" text="Valor" />
-            <TableColumn fx:id="columnDtConta" prefWidth="100.0" text="Data da Conta" />
+            <TableColumn fx:id="columnValor" maxWidth="125.0" prefWidth="125.0" text="Valor da Conta" />
+            <TableColumn fx:id="columnVlrParcela" maxWidth="125.0" prefWidth="125.0" text="Valor da Parcela" />
+            <TableColumn fx:id="columnDtConta" prefWidth="150.0" text="Data da Conta" />
             <TableColumn fx:id="columnDtVenc" prefWidth="144.0" text="Data do Vencimento" />
+            <TableColumn fx:id="columnPago" maxWidth="120.0" prefWidth="120.0" text="Pago" />
             </columns>
         </TableView>
     </children>

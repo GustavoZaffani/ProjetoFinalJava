@@ -110,7 +110,7 @@ public class FXMLCompraCadastroController implements Initializable {
             this.textDescricao.setText(compra.getDescricao());
             this.datePickerCompra.setValue(compra.getDataCompra());
             this.comboFornecedor.setValue(compra.getFornecedor());
-            this.textVlrTotal.setText(compra.getValorTotal().toString());
+            this.textVlrTotal.setText(compra.getVlrTotal().toString());
             this.compraProdutoList = compra.getCompraProdutos();
         }
         loadData();
@@ -150,7 +150,7 @@ public class FXMLCompraCadastroController implements Initializable {
             this.compraProdutoList.add(compraProduto);
         }
         this.compra.setCompraProdutos(this.compraProdutoList);
-        this.textVlrTotal.setText(compra.getValorTotal().toString());
+        this.textVlrTotal.setText(compra.getVlrTotal().toString());
         loadData();
     }
 

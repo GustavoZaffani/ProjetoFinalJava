@@ -16,9 +16,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.persistence.Temporal;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 /**
@@ -38,6 +41,10 @@ public class FXMLContaReceberListaController implements Initializable {
     private TableColumn<ContaReceber, LocalDate> columnDtConta;
     @FXML
     private TableColumn<ContaReceber, LocalDate> columnDtVenc;
+    @FXML
+    private TableColumn<ContaReceber, BigDecimal> columnVlrParcela;
+    @FXML
+    private TableColumn<ContaReceber, Boolean> columnPago;
     @FXML
     private Button buttonEdit;
     private ContaReceberDao contaReceberDao;
@@ -63,17 +70,29 @@ public class FXMLContaReceberListaController implements Initializable {
         this.columnValor.setCellValueFactory(
                 new PropertyValueFactory<>("valorConta")
         );
+        this.columnVlrParcela.setCellValueFactory(
+                new PropertyValueFactory<>("valorParcela")
+        );
         this.columnDtConta.setCellValueFactory(
                 new PropertyValueFactory<>("dataConta")
         );
         this.columnDtVenc.setCellValueFactory(
                 new PropertyValueFactory<>("dataVencimento")
         );
+        this.columnPago.setCellValueFactory(
+                new PropertyValueFactory<>("infoPago")
+        );
     }
 
     private void loadData() {
         this.list.clear();
         this.list.addAll(this.contaReceberDao.findAll());
+
+        list.forEach(lista -> {
+            if (lista.getIsPago().equals(Boolean.TRUE)) {
+                lista.setInfoPago("Recebido");
+            } else lista.setInfoPago("Pendente");
+        });
         tableData.setItems(list);
     }
 
@@ -126,6 +145,39 @@ public class FXMLContaReceberListaController implements Initializable {
     private void newRecord(ActionEvent event) {
         this.openForm(new ContaReceber(), event);
     }
+
+    @FXML
+    private void receber(ActionEvent event) {
+        if (tableData.getSelectionModel()
+                .getSelectedIndex() >= 0) {
+            try {
+                ContaReceber contaReceber = tableData
+                        .getSelectionModel().getSelectedItem();
+                contaReceber.setIsPago(Boolean.TRUE);
+                contaReceberDao.save(contaReceber);
+                loadData();
+            } catch (Exception e) {
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setHeaderText("Ocorreu um erro "
+                        + " ao realizar o recebimento da conta!");
+                alert.setContentText("Por favor, tente realizar "
+                        + "a operação novamente!");
+                alert.showAndWait();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Nenhum registro "
+                    + "selecionado");
+            alert.setContentText("Por favor, "
+                    + "selecione um registro "
+                    + "na tabela!");
+            alert.showAndWait();
+        }
+    }
+
 
     @FXML
     private void delete(ActionEvent event) {

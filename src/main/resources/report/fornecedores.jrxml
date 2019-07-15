@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="produtos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="506a424c-9b6b-45e7-b129-40ec2e5b6a61">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="bancoProjeto.xml"/>
+	<parameter name="TITULO" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+	F.ID,
+	F.RAZAO_SOCIAL,
+	F.NOME_FANTASIA,
+	F.CNPJ,
+	CI.NOME CIDADE,
+	E.UF ESTADO
+FROM FORNECEDOR F
+	LEFT JOIN CIDADE CI
+		ON CI.ID = F.CIDADE_ID
+	LEFT JOIN ESTADO E
+		ON E.ID = F.ESTADO_ID
+ORDER BY 1]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fornecedor"/>
+	</field>
+	<field name="razao_social" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="razao_social"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fornecedor"/>
+	</field>
+	<field name="nome_fantasia" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome_fantasia"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fornecedor"/>
+	</field>
+	<field name="cnpj" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cnpj"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fornecedor"/>
+	</field>
+	<field name="cidade" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cidade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cidade"/>
+	</field>
+	<field name="estado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="estado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="estado"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="53" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="10" width="556" height="30" uuid="88952ad6-e94f-49bf-b9e1-cb0a303811bc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TITULO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="37" y="0" width="153" height="30" uuid="f759759e-e8f2-43d4-b352-11d47aafc2be">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="efbc233e-a1ce-4bff-8d30-b040a1b95dae"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Razão Social]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="343" y="0" width="100" height="30" uuid="737e39b3-43d4-4184-b94d-dfef7adbe444">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ec359ea-6aee-4f69-b8bb-8db1448cd173"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CNPJ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="0" width="120" height="30" uuid="146b2fdd-451a-4d90-8b41-0b69a32b1b4e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9d5cab57-36aa-4aa1-8354-908f0ca469dd"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-18" y="0" width="50" height="30" uuid="429efe9c-1101-48d3-a9a4-e48710abde89">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="83954fdd-26bd-444e-9e07-16d045c99ce1"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cod.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="195" y="2" width="140" height="30" uuid="82e51135-5897-4814-a4ff-e98da1bb932f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="efbc233e-a1ce-4bff-8d30-b040a1b95dae"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome Fantasia]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="51" splitType="Stretch">
+			<textField>
+				<reportElement x="-18" y="1" width="50" height="30" uuid="74e028b9-a8b7-48b2-b01a-05fab9893729">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="83954fdd-26bd-444e-9e07-16d045c99ce1"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="0" width="120" height="30" uuid="198ce4fa-514f-422b-b910-065fda4c21c3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="89590ce4-8a2f-4a24-b0b8-a941d3cef0af"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cidade} + "/" + $F{estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="37" y="0" width="153" height="30" uuid="b1fb0b7f-9323-4738-bc99-353090da9aab">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5afe47f0-7b52-49fe-894f-5fe79c300453"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{razao_social}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="195" y="1" width="140" height="30" uuid="5f98c72e-be56-4b3e-a522-c43ec23259bd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d4b7ac2f-3e42-4865-af79-4a5d81329328"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_fantasia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="343" y="1" width="100" height="30" uuid="f933e1aa-e52e-4f49-b687-b4ec2ce883f6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f29440ff-f1ba-49f5-8d42-b00c47dd1bb5"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cnpj}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="262" y="4" width="294" height="19" uuid="9f0801c6-5d76-4459-a18b-158f2d4c7f28"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER} + " de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy - hh:mm:ss">
+				<reportElement x="-10" y="3" width="150" height="20" uuid="52d2bf95-9cb6-4dbd-b713-69b30e4bca70"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
